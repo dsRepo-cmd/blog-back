@@ -1,0 +1,19 @@
+[
+  {
+    "id": "1",
+    "user": {
+      "id": "1",
+      "email": "dev@mail.com",
+      "username": "dev",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "first": "",
+    "lastname": "",
+    "age": 0,
+    "country": "USA",
+    "currency": "EUR"
+  }
+]

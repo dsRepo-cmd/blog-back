@@ -1,0 +1,71 @@
+[
+  {
+    "token": "VtN1jk",
+    "user": {
+      "id": "1",
+      "roles": [
+        "USER"
+      ],
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "email": "dev@mail.com",
+      "password": "dsd5Rrrrr",
+      "isConfirm": true,
+      "username": "dev",
+      "features": {
+        "isArticleRatingEnabled": true
+      },
+      "jsonSettings": {
+        "theme": "app_light_theme",
+        "isFirstVisit": true,
+        "settingsPageHasBeenOpen": false,
+        "isArticlesPageWasOpened": false
+      }
+    }
+  },
+  {
+    "token": "o1QkS4",
+    "user": {
+      "id": "1",
+      "roles": [
+        "ADMIN"
+      ],
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "email": "dev@mail.com",
+      "password": "dsd5Rrrrr",
+      "isConfirm": true,
+      "username": "dev",
+      "features": {
+        "isArticleRatingEnabled": true
+      },
+      "jsonSettings": {
+        "theme": "app_light_theme",
+        "isFirstVisit": true,
+        "settingsPageHasBeenOpen": false,
+        "isArticlesPageWasOpened": true
+      }
+    }
+  },
+  {
+    "token": "ppmFZr",
+    "user": {
+      "id": "1",
+      "roles": [
+        "ADMIN"
+      ],
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "email": "dev@mail.com",
+      "password": "dsd5Rrrrr",
+      "isConfirm": true,
+      "username": "dev",
+      "features": {
+        "isArticleRatingEnabled": true
+      },
+      "jsonSettings": {
+        "theme": "app_light_theme",
+        "isFirstVisit": true,
+        "settingsPageHasBeenOpen": false,
+        "isArticlesPageWasOpened": true
+      }
+    }
+  }
+]

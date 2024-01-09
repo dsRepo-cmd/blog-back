@@ -1,0 +1,687 @@
+[
+  {
+    "id": "1",
+    "title": "JavaScript",
+    "subtitle": "Empowering Web Development",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+    "views": 110,
+    "createdAt": "02.10.2023",
+    "userId": "1",
+    "type": "IT",
+    "isPublished": true,
+    "blocks": [
+      {
+        "id": "1",
+        "type": "TEXT",
+        "title": "Getting Started with JavaScript:",
+        "paragraphs": [
+          "JavaScript is primarily used to enhance user interactivity on the client side, allowing developers to manipulate the Document Object Model (DOM) and respond to user actions. It's executed in web browsers, making it an integral part of modern web development."
+        ],
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703700436089",
+        "type": "TEXT",
+        "paragraphs": [
+          "Let's start with the classic \"Hello, World!\" example in JavaScript. This simple script outputs a message to the browser console:"
+        ],
+        "title": "Hello World in JavaScript:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703700457861",
+        "type": "CODE",
+        "code": "console.log(\"Hello, World!\");"
+      },
+      {
+        "id": "1703700479932",
+        "type": "TEXT",
+        "paragraphs": [
+          "JavaScript is a loosely typed language, meaning you don't need to declare the data type of a variable explicitly. Here's an example of declaring variables and working with different data types:"
+        ],
+        "title": "Variables and Data Types:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703700513324",
+        "type": "CODE",
+        "code": "let message = \"Hello, JavaScript!\"; // String\nlet number = 42; // Number\nlet isTrue = true; // Boolean\n\nconsole.log(message);\nconsole.log(number);\nconsole.log(isTrue);"
+      },
+      {
+        "id": "1703700523600",
+        "type": "TEXT",
+        "paragraphs": [
+          "JavaScript supports typical control flow statements like if, else, and switch. This allows developers to make decisions in their code based on certain conditions. Here's a simple if statement:"
+        ],
+        "title": "Control Flow:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703700549624",
+        "type": "CODE",
+        "code": "let temperature = 25;\n\nif (temperature > 30) {\n  console.log(\"It's a hot day!\");\n} else {\n  console.log(\"It's not too hot today.\");\n}"
+      },
+      {
+        "id": "1703706094343",
+        "type": "TEXT",
+        "paragraphs": [
+          "Functions are a fundamental building block in JavaScript. They allow you to encapsulate a block of code and execute it whenever needed. Here's a basic example:"
+        ],
+        "title": "Functions in JavaScript:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703706138898",
+        "type": "CODE",
+        "code": "function greet(name) {\n  console.log(\"Hello, \" + name + \"!\");\n}\n\ngreet(\"John\");"
+      },
+      {
+        "id": "1703860556308",
+        "type": "IMAGE",
+        "src": "https://carldesouza.com/wp-content/uploads/2020/09/img_5f5af36e4d93c.png",
+        "title": "How to Beautify a JavaScript File in Visual Studio Code"
+      },
+      {
+        "id": "1704312500713",
+        "type": "CODE",
+        "code": "console.log(\"Hello, World!\");"
+      }
+    ],
+    "user": {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@mail.com",
+      "password": "dsd5Rrrrr",
+      "roles": [
+        "ADMIN"
+      ],
+      "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
+    }
+  },
+  {
+    "id": "2",
+    "title": "Pyton Runtime Environments New",
+    "subtitle": "What's new in Pyton ?",
+    "img": "https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "views": 3012,
+    "createdAt": "1.12.2023",
+    "userId": "2",
+    "type": "ECONOMICS",
+    "isPublished": true,
+    "blocks": [
+      {
+        "id": "1703720162508",
+        "type": "TEXT",
+        "paragraphs": [
+          "Python's syntax is designed to be clear and readable, making it an excellent choice for beginners and experienced developers alike. It supports both procedural and object-oriented programming paradigms, allowing flexibility in coding styles."
+        ],
+        "title": "Getting Started with Python:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720230175",
+        "type": "TEXT",
+        "paragraphs": [
+          "Embark on your Python journey with the quintessential \"Hello, World!\" program:"
+        ],
+        "title": "Hello World in Python:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720246087",
+        "type": "CODE",
+        "code": "print(\"Hello, World!\")"
+      },
+      {
+        "id": "1703720264743",
+        "type": "TEXT",
+        "paragraphs": [
+          "In Python, you don't need to explicitly declare variable types. Here's an example showcasing different data types:"
+        ],
+        "title": "Variables and Data Types:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720289088",
+        "type": "CODE",
+        "code": "message = \"Hello, Python!\"  # String\nnumber = 42  # Integer\nis_true = True  # Boolean\n\nprint(message)\nprint(number)\nprint(is_true)"
+      },
+      {
+        "id": "1703720298215",
+        "type": "TEXT",
+        "paragraphs": [
+          "Python supports standard control flow statements like if, else, and elif for decision-making. Here's an example using an if statement:\n\n"
+        ],
+        "title": "Control Flow:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720315759",
+        "type": "CODE",
+        "code": "temperature = 25\n\nif temperature > 30:\n    print(\"It's a hot day!\")\nelse:\n    print(\"It's not too hot today.\")"
+      },
+      {
+        "id": "1703720345239",
+        "type": "TEXT",
+        "paragraphs": [
+          "Functions play a crucial role in Python, enabling developers to modularize code. Here's a simple function to greet a person:"
+        ],
+        "title": "Functions in Python:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720367366",
+        "type": "CODE",
+        "code": "def greet(name):\n    print(\"Hello, \" + name + \"!\")\n\ngreet(\"John\")"
+      }
+    ],
+    "user": {
+      "id": "2",
+      "username": "user",
+      "email": "user@mail.com",
+      "roles": [
+        "USER"
+      ],
+      "password": "123",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
+    }
+  },
+  {
+    "id": "5",
+    "title": "Pyton Runtime Environments",
+    "subtitle": "What's new in JS?",
+    "img": "https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "views": 3030,
+    "createdAt": "12.12.2023",
+    "userId": "2",
+    "type": [
+      "SCIENCE",
+      "ECONOMICS",
+      "POLITICS",
+      "SCIENCE"
+    ],
+    "isPublished": true,
+    "blocks": [
+      {
+        "id": "34",
+        "type": "TEXT",
+        "title": "What is a Runtime Environment?",
+        "paragraphs": [
+          "A runtime environment is where your program will be executed. It determines what global objects your program can access and it can also impact how it runs. This article covers the two JavaScript runtime environments",
+          "The most common place where JavaScript code is executed is in a browser. For example, using any text editor, you could create a file on your own computer called my_website.html and put the following HTML code inside:"
+        ]
+      },
+      {
+        "id": "35",
+        "type": "CODE",
+        "code": "<!DOCTYPE html>\n<html>\n  <body>\n    <p id=\"hello\"></p>\n\n    <script>\n      document.getElementById(\"hello\").innerHTML = \"Hello, world!\";\n    </script>\n  </body>\n</html>;"
+      },
+      {
+        "id": "36",
+        "type": "TEXT",
+        "title": "Title of this block",
+        "paragraphs": [
+          "The program traditionally called 'Hello, world!' is very simple. It outputs a phrase like 'Hello, world!' or something similar using the features of a certain language.",
+          "There are other ways to run JS code in the browser. For regular use of JavaScript programs, they are loaded into the browser to enable the functionality of web pages. Typically, code is formatted as separate files with the extension .js, which are then connected to web pages. However, you can also include program code directly in the page's code. All this is done using the <script> tag. When the browser detects such code, it executes it. Details about the script tag can be found on the w3school.com website. In particular, let's consider an example demonstrating the operation of a web page using JavaScript, as shown on this resource. This example can be run using the tools provided by this resource (look for the Try it Yourself button), but we will do it a little differently. Namely, we will create a new file in some text editor (for example - in VS Code or Notepad++) called hello.html, and add the following code to it:"
+        ]
+      },
+      {
+        "id": "37",
+        "type": "IMAGE",
+        "src": "https://www.amincharoliya.com/_next/image?url=%2Fimages%2Farticles%2Fjs-class.png&w=3840&q=75",
+        "title": "Figure 1 - website screenshot"
+      },
+      {
+        "id": "38",
+        "type": "CODE",
+        "code": "const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);"
+      },
+      {
+        "id": "39",
+        "type": "TEXT",
+        "title": "Title of this block",
+        "paragraphs": [
+          "JavaScript is a language that allows you to execute programs in various environments. In our case, we are talking about browsers and the server platform Node.js. If you haven't written any JS code yet and are reading this text in a browser on your desktop computer, it means you are literally seconds away from your first JavaScript program.",
+          "There are other ways to run JS code in the browser. For regular use of JavaScript programs, they are loaded into the browser to enable the functionality of web pages. Typically, code is formatted as separate files with the extension .js, which are then connected to web pages. However, you can also include program code directly in the page's code. All this is done using the <script> tag. When the browser detects such code, it executes it. Details about the script tag can be found on the w3school.com website. In particular, let's consider an example demonstrating the operation of a web page using JavaScript, as shown on this resource. This example can be run using the tools provided by this resource (look for the Try it Yourself button), but we will do it a little differently. Namely, we will create a new file in some text editor (for example - in VS Code or Notepad++) called hello.html, and add the following code to it:"
+        ]
+      },
+      {
+        "id": "40",
+        "type": "IMAGE",
+        "src": "https://www.codeproject.com/KB/scripting/859479/js-article-00.PNG",
+        "title": "Figure 2 - website screenshot"
+      },
+      {
+        "id": "41",
+        "type": "TEXT",
+        "title": "Title of this block",
+        "paragraphs": [
+          "JavaScript is a language that allows you to execute programs in various environments. In our case, we are talking about browsers and the server platform Node.js. If you haven't written any JS code yet and are reading this text in a browser on your desktop computer, it means you are literally seconds away from your first JavaScript program."
+        ]
+      }
+    ],
+    "user": {
+      "id": "2",
+      "username": "user",
+      "email": "user@mail.com",
+      "roles": [
+        "USER"
+      ],
+      "password": "123",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
+    }
+  },
+  {
+    "id": "7",
+    "title": " Introduction to JavaScript",
+    "subtitle": "Empowering Web Development",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
+    "views": 17,
+    "createdAt": "02.10.2023",
+    "userId": "1",
+    "type": "IT",
+    "isPublished": true,
+    "blocks": [
+      {
+        "id": "1",
+        "type": "TEXT",
+        "title": "Getting Started with JavaScript:",
+        "paragraphs": [
+          "JavaScript is primarily used to enhance user interactivity on the client side, allowing developers to manipulate the Document Object Model (DOM) and respond to user actions. It's executed in web browsers, making it an integral part of modern web development."
+        ],
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703700436089",
+        "type": "TEXT",
+        "paragraphs": [
+          "Let's start with the classic \"Hello, World!\" example in JavaScript. This simple script outputs a message to the browser console:"
+        ],
+        "title": "Hello World in JavaScript:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703700457861",
+        "type": "CODE",
+        "code": "console.log(\"Hello, World!\");"
+      },
+      {
+        "id": "1703700479932",
+        "type": "TEXT",
+        "paragraphs": [
+          "JavaScript is a loosely typed language, meaning you don't need to declare the data type of a variable explicitly. Here's an example of declaring variables and working with different data types:"
+        ],
+        "title": "Variables and Data Types:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703700513324",
+        "type": "CODE",
+        "code": "let message = \"Hello, JavaScript!\"; // String\nlet number = 42; // Number\nlet isTrue = true; // Boolean\n\nconsole.log(message);\nconsole.log(number);\nconsole.log(isTrue);"
+      },
+      {
+        "id": "1703700523600",
+        "type": "TEXT",
+        "paragraphs": [
+          "JavaScript supports typical control flow statements like if, else, and switch. This allows developers to make decisions in their code based on certain conditions. Here's a simple if statement:"
+        ],
+        "title": "Control Flow:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703700549624",
+        "type": "CODE",
+        "code": "let temperature = 25;\n\nif (temperature > 30) {\n  console.log(\"It's a hot day!\");\n} else {\n  console.log(\"It's not too hot today.\");\n}"
+      },
+      {
+        "id": "1703706094343",
+        "type": "TEXT",
+        "paragraphs": [
+          "Functions are a fundamental building block in JavaScript. They allow you to encapsulate a block of code and execute it whenever needed. Here's a basic example:"
+        ],
+        "title": "Functions in JavaScript:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703706138898",
+        "type": "CODE",
+        "code": "function greet(name) {\n  console.log(\"Hello, \" + name + \"!\");\n}\n\ngreet(\"John\");"
+      },
+      {
+        "id": "1703860556308",
+        "type": "IMAGE",
+        "src": "https://carldesouza.com/wp-content/uploads/2020/09/img_5f5af36e4d93c.png",
+        "title": "How to Beautify a JavaScript File in Visual Studio Code"
+      },
+      {
+        "id": "1704312500713",
+        "type": "CODE",
+        "code": "console.log(\"Hello, World!\");"
+      }
+    ],
+    "user": {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@mail.com",
+      "password": "dsd5Rrrrr",
+      "roles": [
+        "ADMIN"
+      ],
+      "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
+    }
+  },
+  {
+    "id": "8",
+    "title": "Pyton Runtime Environments New1",
+    "subtitle": "What's new in Pyton ?",
+    "img": "https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "views": 3030,
+    "createdAt": "1.12.2023",
+    "userId": "2",
+    "type": "ECONOMICS",
+    "isPublished": true,
+    "blocks": [
+      {
+        "id": "1703720162508",
+        "type": "TEXT",
+        "paragraphs": [
+          "Python's syntax is designed to be clear and readable, making it an excellent choice for beginners and experienced developers alike. It supports both procedural and object-oriented programming paradigms, allowing flexibility in coding styles."
+        ],
+        "title": "Getting Started with Python:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720230175",
+        "type": "TEXT",
+        "paragraphs": [
+          "Embark on your Python journey with the quintessential \"Hello, World!\" program:"
+        ],
+        "title": "Hello World in Python:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720246087",
+        "type": "CODE",
+        "code": "print(\"Hello, World!\")"
+      },
+      {
+        "id": "1703720264743",
+        "type": "TEXT",
+        "paragraphs": [
+          "In Python, you don't need to explicitly declare variable types. Here's an example showcasing different data types:"
+        ],
+        "title": "Variables and Data Types:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720289088",
+        "type": "CODE",
+        "code": "message = \"Hello, Python!\"  # String\nnumber = 42  # Integer\nis_true = True  # Boolean\n\nprint(message)\nprint(number)\nprint(is_true)"
+      },
+      {
+        "id": "1703720298215",
+        "type": "TEXT",
+        "paragraphs": [
+          "Python supports standard control flow statements like if, else, and elif for decision-making. Here's an example using an if statement:\n\n"
+        ],
+        "title": "Control Flow:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720315759",
+        "type": "CODE",
+        "code": "temperature = 25\n\nif temperature > 30:\n    print(\"It's a hot day!\")\nelse:\n    print(\"It's not too hot today.\")"
+      },
+      {
+        "id": "1703720345239",
+        "type": "TEXT",
+        "paragraphs": [
+          "Functions play a crucial role in Python, enabling developers to modularize code. Here's a simple function to greet a person:"
+        ],
+        "title": "Functions in Python:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703720367366",
+        "type": "CODE",
+        "code": "def greet(name):\n    print(\"Hello, \" + name + \"!\")\n\ngreet(\"John\")"
+      }
+    ],
+    "user": {
+      "id": "2",
+      "username": "user",
+      "email": "user@mail.com",
+      "roles": [
+        "USER"
+      ],
+      "password": "123",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
+    }
+  },
+  {
+    "id": "9",
+    "title": "Pyton Runtime Environments",
+    "subtitle": "What's new in JS?",
+    "user": {
+      "id": "2",
+      "email": "dev@mail.com",
+      "username": "dev",
+      "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "img": "https://picsum.photos/650/400?random=1",
+    "views": 12,
+    "createdAt": "2024-01-09T18:57:33.460Z",
+    "type": "ALL",
+    "blocks": [
+      {
+        "id": "1704826677049",
+        "type": "CODE",
+        "code": "<!DOCTYPE html>\n<html>\n  <body>\n    <p id=\"hello\"></p>\n\n    <script>\n      document.getElementById(\"hello\").innerHTML = \"Hello, world!\";\n    </script>\n  </body>\n</html>;"
+      }
+    ],
+    "isPublished": true
+  },
+  {
+    "id": "10",
+    "title": "New",
+    "subtitle": "New",
+    "user": {
+      "id": "1",
+      "email": "dev@mail.com",
+      "username": "dev",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "img": "https://picsum.photos/650/400?random=1",
+    "views": 4,
+    "createdAt": "2024-01-09T20:00:07.168Z",
+    "type": "ALL",
+    "blocks": [
+      {
+        "id": "1704830419738",
+        "type": "CODE",
+        "code": "Code"
+      }
+    ],
+    "isPublished": true
+  },
+  {
+    "id": "11",
+    "title": " Unleashing Rust",
+    "subtitle": "A Modern Language for Safe and Efficient Systems Programming",
+    "img": "https://logowik.com/content/uploads/images/rust4784.logowik.com.webp",
+    "views": 209,
+    "createdAt": "12.01.2023",
+    "userId": "1",
+    "type": "IT",
+    "blocks": [
+      {
+        "id": "1703866814381",
+        "type": "TEXT",
+        "paragraphs": [
+          "Rust, a systems programming language developed by Mozilla, has gained popularity for its focus on safety, performance, and concurrency. As a language designed for low-level systems programming, Rust offers memory safety without sacrificing performance, making it an ideal choice for building robust and efficient applications. Let's delve into the key features of Rust and explore some code snippets to showcase its capabilities."
+        ],
+        "title": "",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703866833041",
+        "type": "TEXT",
+        "paragraphs": [
+          "Rust is known for its ownership system, which ensures memory safety without the need for a garbage collector. It also features a powerful borrow checker that enforces strict rules on references, preventing common programming errors like null pointer dereferencing."
+        ],
+        "title": "Getting Started with Rust:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703866853061",
+        "type": "TEXT",
+        "paragraphs": [
+          "Begin your Rust exploration with the classic \"Hello, World!\" program:"
+        ],
+        "title": "Hello World in Rust:",
+        "paragraphIndex": 0
+      }
+    ],
+    "user": {
+      "id": "1",
+      "username": "admin",
+      "password": "123",
+      "roles": [
+        "ADMIN"
+      ],
+      "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
+      "features": {
+        "isAppRedesigned": true
+      },
+      "jsonSettings": {
+        "theme": "app_light_theme",
+        "isFirstVisit": true,
+        "settingsPageHasBeenOpen": false,
+        "isArticlesPageWasOpened": true
+      }
+    },
+    "isPublished": true
+  },
+  {
+    "id": "12",
+    "title": " Unleashing Rust",
+    "subtitle": "A Modern Language for Safe and Efficient Systems Programming",
+    "img": "https://logowik.com/content/uploads/images/rust4784.logowik.com.webp",
+    "views": 209,
+    "createdAt": "12.01.2023",
+    "userId": "1",
+    "type": "IT",
+    "blocks": [
+      {
+        "id": "1703866814381",
+        "type": "TEXT",
+        "paragraphs": [
+          "Rust, a systems programming language developed by Mozilla, has gained popularity for its focus on safety, performance, and concurrency. As a language designed for low-level systems programming, Rust offers memory safety without sacrificing performance, making it an ideal choice for building robust and efficient applications. Let's delve into the key features of Rust and explore some code snippets to showcase its capabilities."
+        ],
+        "title": "",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703866833041",
+        "type": "TEXT",
+        "paragraphs": [
+          "Rust is known for its ownership system, which ensures memory safety without the need for a garbage collector. It also features a powerful borrow checker that enforces strict rules on references, preventing common programming errors like null pointer dereferencing."
+        ],
+        "title": "Getting Started with Rust:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703866853061",
+        "type": "TEXT",
+        "paragraphs": [
+          "Begin your Rust exploration with the classic \"Hello, World!\" program:"
+        ],
+        "title": "Hello World in Rust:",
+        "paragraphIndex": 0
+      }
+    ],
+    "user": {
+      "id": "1",
+      "username": "admin",
+      "password": "123",
+      "roles": [
+        "ADMIN"
+      ],
+      "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
+      "features": {
+        "isAppRedesigned": true
+      },
+      "jsonSettings": {
+        "theme": "app_light_theme",
+        "isFirstVisit": true,
+        "settingsPageHasBeenOpen": false,
+        "isArticlesPageWasOpened": true
+      }
+    },
+    "isPublished": true
+  },
+  {
+    "id": "13",
+    "title": " Unleashing Rust",
+    "subtitle": "A Modern Language for Safe and Efficient Systems Programming",
+    "img": "https://logowik.com/content/uploads/images/rust4784.logowik.com.webp",
+    "views": 209,
+    "createdAt": "12.01.2023",
+    "userId": "1",
+    "type": "IT",
+    "blocks": [
+      {
+        "id": "1703866814381",
+        "type": "TEXT",
+        "paragraphs": [
+          "Rust, a systems programming language developed by Mozilla, has gained popularity for its focus on safety, performance, and concurrency. As a language designed for low-level systems programming, Rust offers memory safety without sacrificing performance, making it an ideal choice for building robust and efficient applications. Let's delve into the key features of Rust and explore some code snippets to showcase its capabilities."
+        ],
+        "title": "",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703866833041",
+        "type": "TEXT",
+        "paragraphs": [
+          "Rust is known for its ownership system, which ensures memory safety without the need for a garbage collector. It also features a powerful borrow checker that enforces strict rules on references, preventing common programming errors like null pointer dereferencing."
+        ],
+        "title": "Getting Started with Rust:",
+        "paragraphIndex": 0
+      },
+      {
+        "id": "1703866853061",
+        "type": "TEXT",
+        "paragraphs": [
+          "Begin your Rust exploration with the classic \"Hello, World!\" program:"
+        ],
+        "title": "Hello World in Rust:",
+        "paragraphIndex": 0
+      }
+    ],
+    "user": {
+      "id": "1",
+      "username": "admin",
+      "password": "123",
+      "roles": [
+        "ADMIN"
+      ],
+      "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
+      "features": {
+        "isAppRedesigned": true
+      },
+      "jsonSettings": {
+        "theme": "app_light_theme",
+        "isFirstVisit": true,
+        "settingsPageHasBeenOpen": false,
+        "isArticlesPageWasOpened": true
+      }
+    },
+    "isPublished": true
+  }
+]

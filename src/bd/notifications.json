@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "userId": "1",
+    "type": "Announcement",
+    "title": "",
+    "message": "Create account",
+    "href": "",
+    "date": "2024-01-09T19:55:53.500Z"
+  },
+  {
+    "id": "2",
+    "userId": "1",
+    "type": "Announcement",
+    "title": "",
+    "message": "Enter account",
+    "href": "",
+    "date": "2024-01-09T21:19:58.365Z"
+  },
+  {
+    "id": "3",
+    "userId": "1",
+    "type": "Announcement",
+    "title": "",
+    "message": "Enter account",
+    "href": "",
+    "date": "2024-01-09T21:26:39.102Z"
+  }
+]
