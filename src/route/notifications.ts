@@ -1,40 +1,39 @@
 import express, { Request, Response } from "express";
 import { User } from "../class/User/index.js";
 import { Notification } from "../class/Notification/index.js";
+import { handleServerError } from "./index.js";
+
 const router = express.Router();
 
-router.get("/notifications/:userId", function (req: Request, res: Response) {
+router.get("/notifications/:userId", async (req: Request, res: Response) => {
   const userId = req.params.userId;
-  const head = req.headers.authorization;
-  console.log("Settings===", userId, head);
 
   if (!userId) {
     return res.status(400).json({
-      message: "Error. There are no required fields",
+      message: "Error. 'userId' parameter is required",
     });
   }
 
   try {
-    const user = User.getUserDataById(userId);
+    const user = await User.getUserDataById(userId);
+
     if (!user?.id) {
       return res.status(400).json({
-        message: "Error. There are no required fields",
+        message: "Error. User not found for the provided userId",
       });
     }
 
-    const notifications = Notification.getByUserId(user.id).reverse();
+    const notifications = await Notification.getByUserId(user.id);
 
-    return res.status(200).json(notifications);
+    if (!notifications || notifications.length === 0) {
+      return res.status(404).json({
+        message: "No notifications found for the specified userId",
+      });
+    }
+
+    return res.status(200).json(notifications.reverse());
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      return res.status(400).json({
-        message: error.message,
-      });
-    } else {
-      return res.status(500).json({
-        message: "Internal Server Error",
-      });
-    }
+    return handleServerError(res, error);
   }
 });
 

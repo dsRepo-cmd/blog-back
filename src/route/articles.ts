@@ -1,11 +1,11 @@
 import express, { Request, Response } from "express";
-
 import { Article, ArticleQueryParams } from "../class/Article/index.js";
+import { handleServerError } from "./index.js";
+
 const router = express.Router();
 
-// GET============================================================
-
-router.get("/articles", function (req: Request, res: Response) {
+// GET ============================================================
+router.get("/articles", async (req: Request, res: Response) => {
   const query = req.query as unknown;
 
   if (!query) {
@@ -16,26 +16,16 @@ router.get("/articles", function (req: Request, res: Response) {
 
   try {
     const articleQueryParams: ArticleQueryParams = query as ArticleQueryParams;
-
-    const articles = Article.getPublishedList(articleQueryParams);
+    const articles = await Article.getPublishedList(articleQueryParams);
 
     return res.status(200).json(articles);
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      return res.status(400).json({
-        message: error.message,
-      });
-    } else {
-      return res.status(500).json({
-        message: "Internal Server Error",
-      });
-    }
+    return handleServerError(res, error);
   }
 });
 
-// POST===========================================================
-
-router.post("/articles/", function (req: Request, res: Response) {
+// POST ===========================================================
+router.post("/articles", async (req: Request, res: Response) => {
   const body = req.body;
 
   if (!body) {
@@ -44,20 +34,18 @@ router.post("/articles/", function (req: Request, res: Response) {
     });
   }
 
-  const articles = Article.getPublishedList(body);
-
   try {
-    return res.status(200).json(articles);
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return res.status(400).json({
-        message: error.message,
-      });
-    } else {
-      return res.status(500).json({
-        message: "Internal Server Error",
+    const articles = await Article.getPublishedList(body);
+
+    if (!articles || articles.length === 0) {
+      return res.status(404).json({
+        message: "No articles found",
       });
     }
+
+    return res.status(200).json(articles);
+  } catch (error: unknown) {
+    return handleServerError(res, error);
   }
 });
 

@@ -1,51 +1,49 @@
-import express, { Request, Response } from "express";
+import { Router, Request, Response } from "express";
 import ArticleRating from "../class/ArticleRating/ArticleRating.js";
 import { RateArticleArg } from "../class/ArticleRating/types.js";
+import { handleServerError } from "./index.js";
 
-const router = express.Router();
+const router = Router();
 
-// GET============================================================
-
-router.get("/article-ratings", function (req: Request, res: Response) {
+router.get("/article-ratings", async (req: Request, res: Response) => {
   const userId = req.query.userId as string;
   const articleId = req.query.articleId as string;
 
+  if (!userId || !articleId) {
+    return res.status(400).json({
+      message: "userId and articleId are required parameters",
+    });
+  }
+
   try {
-    const rating = ArticleRating.getByIds({ userId, articleId });
-    console.log("RATIONG", rating);
-    return res.status(200).json(rating);
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return res.status(400).json({
-        message: error.message,
-      });
+    const rating = await ArticleRating.getByIds({ userId, articleId });
+
+    if (rating) {
+      return res.status(200).json(rating);
     } else {
-      return res.status(500).json({
-        message: "Internal Server Error",
+      return res.status(404).json({
+        message: "Rating not found",
       });
     }
+  } catch (error: unknown) {
+    return handleServerError(res, error);
   }
 });
 
-// POST===========================================================
-
-router.post("/article-ratings", function (req: Request, res: Response) {
+router.post("/article-ratings", async (req: Request, res: Response) => {
   const args = req.body as RateArticleArg;
 
-  try {
-    ArticleRating.create(args);
+  if (!args || !args.userId || !args.articleId) {
+    return res.status(400).json({
+      message: "userId, articleId, and other required parameters are missing",
+    });
+  }
 
+  try {
+    await ArticleRating.create(args);
     return res.status(200).json();
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      return res.status(400).json({
-        message: error.message,
-      });
-    } else {
-      return res.status(500).json({
-        message: "Internal Server Error",
-      });
-    }
+    return handleServerError(res, error);
   }
 });
 

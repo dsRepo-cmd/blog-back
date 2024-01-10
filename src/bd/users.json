@@ -13,6 +13,26 @@
       "isArticleRatingEnabled": true
     },
     "jsonSettings": {
+      "theme": "app_orange_theme",
+      "isFirstVisit": true,
+      "settingsPageHasBeenOpen": false,
+      "isArticlesPageWasOpened": true
+    }
+  },
+  {
+    "id": "2",
+    "roles": [
+      "USER"
+    ],
+    "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+    "email": "user@mail.com",
+    "password": "dsd5Rrrrr",
+    "isConfirm": true,
+    "username": "user",
+    "features": {
+      "isArticleRatingEnabled": true
+    },
+    "jsonSettings": {
       "theme": "app_light_theme",
       "isFirstVisit": true,
       "settingsPageHasBeenOpen": false,

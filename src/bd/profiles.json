@@ -15,5 +15,22 @@
     "age": 0,
     "country": "USA",
     "currency": "EUR"
+  },
+  {
+    "id": "2",
+    "user": {
+      "id": "2",
+      "email": "user@mail.com",
+      "username": "user",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "first": "",
+    "lastname": "",
+    "age": 0,
+    "country": "USA",
+    "currency": "EUR"
   }
 ]

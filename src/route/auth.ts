@@ -3,49 +3,50 @@ import { User } from "../class/User/index.js";
 import { Notification, NotificationType } from "../class/Notification/index.js";
 import { Session } from "../class/Session/index.js";
 import { AuthConfirm } from "../class/AuthConfirm/index.js";
+import { handleServerError } from "./index.js";
 
 const router = express.Router();
 
 /////=======================================================================
-
-router.post("/signup", function (req: Request, res: Response) {
+router.post("/signup", async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   console.log("===================", email, password);
 
   if (!email || !password) {
     return res.status(400).json({
-      message: "Error. There are no required fields",
+      message: "Error. 'email' and 'password' are required fields",
     });
   }
 
   try {
-    const isUser = User.getByEmail(email);
+    const isUser = await User.getByEmail(email);
 
     if (isUser) {
       return res.status(401).json({
-        message: "A user with the same name is already exist",
+        message: "A user with the same email already exists",
       });
     }
 
-    const newUser = User.create({ email, password });
+    const newUser = await User.create({ email, password });
 
-    Notification.createNotification({
+    await Notification.createNotification({
       userId: newUser.id,
       type: NotificationType.ANNOUNCEMENT,
       message: "Create account",
     });
 
-    const sessionData = User.confirmByEmail(email);
+    const sessionData = await User.confirmByEmail(email);
 
     if (!sessionData) {
       return res.status(401).json({
         message: "User with this email not found",
       });
     }
-    const { token } = Session.create(sessionData);
 
-    const { code } = AuthConfirm.create(newUser.email);
+    const { token } = await Session.create(sessionData);
+
+    const { code } = await AuthConfirm.create(newUser.email);
 
     console.log("token===", token, "code", code);
 
@@ -60,24 +61,22 @@ router.post("/signup", function (req: Request, res: Response) {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
-      message: "Internal Server Error",
-    });
+    return handleServerError(res, error);
   }
 });
-// ================================================================
 
-router.post("/signup-confirm", function (req: Request, res: Response) {
+// ================================================================
+router.post("/signup-confirm", async (req: Request, res: Response) => {
   const { code, token } = req.body;
 
   if (!code || !token) {
     return res.status(401).json({
-      message: "Error. There are no required fields",
+      message: "Error. 'code' and 'token' are required fields",
     });
   }
 
   try {
-    const session = Session.findSessionByToken(token);
+    const session = await Session.findSessionByToken(token);
 
     if (!session) {
       return res.status(400).json({
@@ -85,7 +84,7 @@ router.post("/signup-confirm", function (req: Request, res: Response) {
       });
     }
 
-    const email = AuthConfirm.getData(Number(code));
+    const email = await AuthConfirm.getData(Number(code));
 
     if (!email) {
       return res.status(400).json({
@@ -99,34 +98,31 @@ router.post("/signup-confirm", function (req: Request, res: Response) {
       });
     }
 
-    User.confirmByEmail(email);
+    await User.confirmByEmail(email);
 
-    const user = User.getByEmail(email);
+    const user = await User.getByEmail(email);
 
     return res.status(200).json(user);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
-      message: "Internal Server Error",
-    });
+    return handleServerError(res, error);
   }
 });
 
 // ================================================================
-
-router.post("/login", function (req: Request, res: Response) {
+router.post("/login", async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   console.log("LOGIN ", email, password);
 
   if (!email || !password) {
     return res.status(400).json({
-      message: "Error. There are no required fields",
+      message: "Error. 'email' and 'password' are required fields",
     });
   }
 
   try {
-    const isUser = User.getByEmail(email);
+    const isUser = await User.getByEmail(email);
 
     if (!isUser) {
       return res.status(400).json({
@@ -140,13 +136,13 @@ router.post("/login", function (req: Request, res: Response) {
       });
     }
 
-    Notification.createNotification({
+    await Notification.createNotification({
       userId: isUser.id,
       type: NotificationType.ANNOUNCEMENT,
       message: "Enter account",
     });
 
-    const sessionData = User.confirmByEmail(email);
+    const sessionData = await User.confirmByEmail(email);
 
     if (!sessionData) {
       return res.status(401).json({
@@ -154,8 +150,8 @@ router.post("/login", function (req: Request, res: Response) {
       });
     }
 
-    const session = Session.create(sessionData);
-    const user = User.getByEmail(email);
+    const session = await Session.create(sessionData);
+    const user = await User.getByEmail(email);
 
     return res.status(200).json({
       message: "You are logged in",
@@ -164,24 +160,21 @@ router.post("/login", function (req: Request, res: Response) {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
-      message: "Internal Server Error",
-    });
+    return handleServerError(res, error);
   }
 });
 // ================================================================
-
-router.post("/recovery", function (req: Request, res: Response) {
+router.post("/recovery", async (req: Request, res: Response) => {
   const { email } = req.body;
 
   if (!email) {
     return res.status(400).json({
-      message: "Error. There are no required fields",
+      message: "Error. 'email' is a required field",
     });
   }
 
   try {
-    const user = User.getByEmail(email);
+    const user = await User.getByEmail(email);
 
     if (!user) {
       return res.status(401).json({
@@ -189,31 +182,30 @@ router.post("/recovery", function (req: Request, res: Response) {
       });
     }
 
-    const sessionData = User.confirmByEmail(email);
+    const sessionData = await User.confirmByEmail(email);
 
     if (!sessionData) {
       return res.status(401).json({
         message: "User with this email not found",
       });
     }
-    Session.create(sessionData);
 
-    Notification.createNotification({
+    await Session.create(sessionData);
+
+    await Notification.createNotification({
       userId: user.id,
       type: NotificationType.WARNING,
       message: "Recovery password",
     });
 
-    AuthConfirm.create(email);
+    await AuthConfirm.create(email);
 
     return res.status(200).json({
       message: "Password recovery code has been sent to your e-mail",
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
-      message: "Internal Server Error",
-    });
+    return handleServerError(res, error);
   }
 });
 // ================================================================
@@ -251,10 +243,7 @@ router.post("/recovery-confirm", function (req: Request, res: Response) {
       session,
     });
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      message: "Internal Server Error",
-    });
+    return handleServerError(res, error);
   }
 });
 

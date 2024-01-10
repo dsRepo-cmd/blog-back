@@ -1,50 +1,58 @@
 import express, { Request, Response } from "express";
 import Comment from "../class/Comment/Comment.js";
 import { CommentArgs } from "../class/Comment/types.js";
+import { handleServerError } from "./index.js";
 
 const router = express.Router();
 
-// GET============================================================
-
-router.get("/comments", function (req: Request, res: Response) {
+// GET ============================================================
+router.get("/comments", async (req: Request, res: Response) => {
   const articleId = req.query.articleId as string;
 
-  try {
-    const comments = Comment.getByArticleId(articleId)?.reverse();
+  if (!articleId) {
+    return res.status(400).json({
+      message: "Error. 'articleId' is required in query params",
+    });
+  }
 
-    return res.status(200).json(comments);
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return res.status(400).json({
-        message: error.message,
-      });
-    } else {
-      return res.status(500).json({
-        message: "Internal Server Error",
+  try {
+    const comments = await Comment.getByArticleId(articleId);
+
+    if (!comments) {
+      return res.status(404).json({
+        message: "No comments found for the specified articleId",
       });
     }
+
+    return res.status(200).json(comments.reverse());
+  } catch (error: unknown) {
+    return handleServerError(res, error);
   }
 });
 
-// POST===========================================================
-
-router.post("/comments", function (req: Request, res: Response) {
+// POST ===========================================================
+router.post("/comments", async (req: Request, res: Response) => {
   const commentData = req.body as CommentArgs;
 
+  if (!commentData || !commentData.articleId) {
+    return res.status(400).json({
+      message: "Error. 'articleId' is required in commentData",
+    });
+  }
+
   try {
-    const comment = Comment.create(commentData);
+    const comment = await Comment.create(commentData);
+
+    if (!comment) {
+      return res.status(404).json({
+        message: "Failed to create comment",
+      });
+    }
+
     console.log("POST", comment);
     return res.status(200).json(comment);
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      return res.status(400).json({
-        message: error.message,
-      });
-    } else {
-      return res.status(500).json({
-        message: "Internal Server Error",
-      });
-    }
+    return handleServerError(res, error);
   }
 });
 

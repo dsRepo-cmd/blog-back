@@ -20,7 +20,19 @@ router.use("/", articleRatings);
 router.use("/", comments);
 
 router.get("/", (req: Request, res: Response) => {
-  res.status(200).json("Hello World");
+  res.status(200).json("Hello Prod");
 });
+
+export function handleServerError(res: Response, error: Error | unknown) {
+  if (error instanceof Error) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  } else {
+    return res.status(500).json({
+      message: "Internal Server Error",
+    });
+  }
+}
 
 export default router;
