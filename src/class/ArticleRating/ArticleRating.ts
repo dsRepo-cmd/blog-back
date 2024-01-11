@@ -76,10 +76,17 @@ class ArticleRating {
   public static getByIds({
     userId,
     articleId,
-  }: GetArticleRatingArg): ArticleRating | null {
-    const result = this.list.find(
+  }: GetArticleRatingArg): ArticleRating[] | null {
+    const result = this.list.filter(
       (rating) => rating.userId === userId && rating.articleId === articleId
     );
+    if (result) {
+      return result;
+    }
+    return null;
+  }
+  public static getByArticleId(articleId: string): ArticleRating[] | null {
+    const result = this.list.filter((rating) => rating.articleId === articleId);
     if (result) {
       return result;
     }

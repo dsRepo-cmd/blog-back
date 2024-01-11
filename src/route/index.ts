@@ -24,6 +24,7 @@ router.get("/", (req: Request, res: Response) => {
 });
 
 export function handleServerError(res: Response, error: Error | unknown) {
+  console.log(error);
   if (error instanceof Error) {
     return res.status(500).json({
       message: error.message,

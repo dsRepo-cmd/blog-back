@@ -1,4 +1,3 @@
-// app.ts
 import createError, { HttpError } from "http-errors";
 import express, { Application, Request, Response, NextFunction } from "express";
 import path from "path";
@@ -65,7 +64,7 @@ app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // catch 404 and forward to error handler
-  console.log(next());
+
   next(createError(404));
   // render the error page
   res.status(err.status || 500).json(err);

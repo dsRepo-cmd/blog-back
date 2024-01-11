@@ -6,17 +6,16 @@ import { handleServerError } from "./index.js";
 const router = Router();
 
 router.get("/article-ratings", async (req: Request, res: Response) => {
-  const userId = req.query.userId as string;
   const articleId = req.query.articleId as string;
 
-  if (!userId || !articleId) {
+  if (!articleId) {
     return res.status(400).json({
-      message: "userId and articleId are required parameters",
+      message: "articleId is required parameters",
     });
   }
 
   try {
-    const rating = await ArticleRating.getByIds({ userId, articleId });
+    const rating = await ArticleRating.getByArticleId(articleId);
 
     if (rating) {
       return res.status(200).json(rating);

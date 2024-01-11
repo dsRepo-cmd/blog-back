@@ -49,7 +49,6 @@ router.post("/comments", async (req: Request, res: Response) => {
       });
     }
 
-    console.log("POST", comment);
     return res.status(200).json(comment);
   } catch (error: unknown) {
     return handleServerError(res, error);

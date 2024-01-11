@@ -11,8 +11,6 @@ const router = express.Router();
 router.post("/signup", async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
-  console.log("===================", email, password);
-
   if (!email || !password) {
     return res.status(400).json({
       message: "Error. 'email' and 'password' are required fields",
@@ -48,8 +46,6 @@ router.post("/signup", async (req: Request, res: Response) => {
 
     const { code } = await AuthConfirm.create(newUser.email);
 
-    console.log("token===", token, "code", code);
-
     return res.status(200).json({
       message: "The user is successfully registered",
       token,
@@ -60,7 +56,6 @@ router.post("/signup", async (req: Request, res: Response) => {
       isConfirm: newUser.isConfirm,
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res, error);
   }
 });
@@ -104,7 +99,6 @@ router.post("/signup-confirm", async (req: Request, res: Response) => {
 
     return res.status(200).json(user);
   } catch (error) {
-    console.log(error);
     return handleServerError(res, error);
   }
 });
@@ -112,8 +106,6 @@ router.post("/signup-confirm", async (req: Request, res: Response) => {
 // ================================================================
 router.post("/login", async (req: Request, res: Response) => {
   const { email, password } = req.body;
-
-  console.log("LOGIN ", email, password);
 
   if (!email || !password) {
     return res.status(400).json({
@@ -159,7 +151,6 @@ router.post("/login", async (req: Request, res: Response) => {
       user,
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res, error);
   }
 });
@@ -204,7 +195,6 @@ router.post("/recovery", async (req: Request, res: Response) => {
       message: "Password recovery code has been sent to your e-mail",
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res, error);
   }
 });

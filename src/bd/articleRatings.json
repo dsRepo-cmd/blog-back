@@ -6,5 +6,84 @@
     "feedback": "123",
     "rate": 3,
     "date": "2024-01-09T20:23:11.849Z"
+  },
+  {
+    "id": "2",
+    "userId": "1",
+    "articleId": "2",
+    "feedback": "121",
+    "rate": 3,
+    "date": "2024-01-10T14:13:22.680Z"
+  },
+  {
+    "id": "3",
+    "userId": "1",
+    "articleId": "2",
+    "feedback": "1212",
+    "rate": 3,
+    "date": "2024-01-10T14:27:25.356Z"
+  },
+  {
+    "id": "4",
+    "userId": "1",
+    "articleId": "7",
+    "feedback": "1212",
+    "rate": 4,
+    "date": "2024-01-10T14:32:43.761Z"
+  },
+  {
+    "id": "5",
+    "userId": "1",
+    "articleId": "11",
+    "feedback": "122",
+    "rate": 1,
+    "date": "2024-01-10T15:04:02.010Z"
+  },
+  {
+    "id": "6",
+    "userId": "2",
+    "articleId": "11",
+    "feedback": "1212",
+    "rate": 5,
+    "date": "2024-01-10T15:05:05.566Z"
+  },
+  {
+    "id": "7",
+    "userId": "2",
+    "articleId": "12",
+    "feedback": "123",
+    "rate": 4,
+    "date": "2024-01-10T15:13:41.210Z"
+  },
+  {
+    "id": "8",
+    "userId": "2",
+    "articleId": "1",
+    "rate": 3,
+    "date": "2024-01-10T15:24:40.116Z"
+  },
+  {
+    "id": "9",
+    "userId": "2",
+    "articleId": "7",
+    "feedback": "",
+    "rate": 1,
+    "date": "2024-01-10T15:24:57.533Z"
+  },
+  {
+    "id": "10",
+    "userId": "1",
+    "articleId": "10",
+    "feedback": "Bad",
+    "rate": 1,
+    "date": "2024-01-10T15:31:50.078Z"
+  },
+  {
+    "id": "11",
+    "userId": "1",
+    "articleId": "5",
+    "feedback": "Good",
+    "rate": 2,
+    "date": "2024-01-11T16:27:51.965Z"
   }
 ]

@@ -88,7 +88,6 @@ class Comment {
         return {};
       });
 
-    console.log(comments);
     if (comments.length === 0) {
       return [];
     }
