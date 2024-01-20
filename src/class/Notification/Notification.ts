@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
-import { NotificationData } from "./types.js";
+import { NotificationArgs, NotificationData } from "./types.js";
 import { NotificationType } from "./consts.js";
 
 const dataFilePath = path.resolve(
@@ -21,21 +21,13 @@ class Notification {
   public href?: string;
   public date: Date;
 
-  constructor({
-    userId,
-    type,
-    message,
-  }: {
-    userId: string;
-    type: NotificationType;
-    message: string;
-  }) {
+  constructor({ userId, type, message, href }: NotificationArgs) {
     this.id = Notification.generateId();
     this.userId = userId;
     this.type = type;
     this.title = "";
     this.message = message;
-    this.href = "";
+    this.href = href;
     this.date = new Date();
   }
 
@@ -83,11 +75,8 @@ class Notification {
     return this.list.filter((notification) => notification.userId === userId);
   }
 
-  public static createNotification(data: {
-    userId: string;
-    type: NotificationType;
-    message: string;
-  }): NotificationData {
+  public static createNotification(data: NotificationArgs): NotificationData {
+    console.log(data);
     const notification = new Notification(data);
     Notification.addNotification(notification);
     return notification;

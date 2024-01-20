@@ -2,6 +2,8 @@ import express, { Request, Response } from "express";
 import { Article } from "../class/Article/index.js";
 import User from "../class/User/User.js";
 import { handleServerError } from "./index.js";
+import Notification from "../class/Notification/Notification.js";
+import { NotificationType } from "../class/Notification/consts.js";
 
 const router = express.Router();
 
@@ -89,6 +91,15 @@ router.post("/article", async (req: Request, res: Response) => {
     }
 
     const savedArticle = await Article.create(user);
+    console.log("savedArticle", savedArticle.id);
+
+    await Notification.createNotification({
+      userId: userId,
+      type: NotificationType.ANNOUNCEMENT,
+      message: "An article was created",
+      href: `article/${savedArticle.id}`,
+    });
+
     return res.status(200).json(savedArticle);
   } catch (error) {
     return handleServerError(res, error);

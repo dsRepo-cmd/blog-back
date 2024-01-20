@@ -196,6 +196,21 @@ class User {
 
     return null;
   }
+  public static getUsersList() {
+    return this.list;
+  }
+
+  public static deletebyId(userId: string): boolean {
+    const index = this.list.findIndex((user) => user.id === userId);
+
+    if (index !== -1) {
+      this.list.splice(index, 1);
+      this.saveData();
+      return true;
+    }
+
+    return false;
+  }
 }
 
 User.initialize();

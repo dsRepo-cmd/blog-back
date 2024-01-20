@@ -5,26 +5,24 @@
     "type": "Announcement",
     "title": "",
     "message": "Create account",
-    "href": "",
-    "date": "2024-01-09T19:55:53.500Z"
+    "date": "2024-01-20T19:04:24.802Z"
   },
   {
     "id": "2",
-    "userId": "1",
+    "userId": "2",
     "type": "Announcement",
     "title": "",
-    "message": "Enter account",
-    "href": "",
-    "date": "2024-01-09T21:19:58.365Z"
+    "message": "Create account",
+    "date": "2024-01-20T19:05:48.404Z"
   },
   {
     "id": "3",
-    "userId": "1",
+    "userId": "2",
     "type": "Announcement",
     "title": "",
-    "message": "Enter account",
-    "href": "",
-    "date": "2024-01-09T21:26:39.102Z"
+    "message": "An article was created",
+    "href": "article/178",
+    "date": "2024-01-20T19:06:31.727Z"
   },
   {
     "id": "4",
@@ -32,70 +30,91 @@
     "type": "Announcement",
     "title": "",
     "message": "Enter account",
-    "href": "",
-    "date": "2024-01-09T22:51:31.751Z"
+    "date": "2024-01-20T19:15:52.505Z"
   },
   {
     "id": "5",
-    "userId": "1",
-    "type": "Announcement",
-    "title": "",
-    "message": "Enter account",
-    "href": "",
-    "date": "2024-01-10T11:25:05.671Z"
-  },
-  {
-    "id": "6",
-    "userId": "2",
+    "userId": "3",
     "type": "Announcement",
     "title": "",
     "message": "Create account",
-    "href": "",
-    "date": "2024-01-10T12:11:40.857Z"
+    "date": "2024-01-20T19:18:11.555Z"
+  },
+  {
+    "id": "6",
+    "userId": "3",
+    "type": "Announcement",
+    "title": "",
+    "message": "Enter account",
+    "date": "2024-01-20T19:19:47.822Z"
   },
   {
     "id": "7",
-    "userId": "1",
+    "userId": "3",
     "type": "Announcement",
     "title": "",
-    "message": "Enter account",
-    "href": "",
-    "date": "2024-01-10T12:26:20.894Z"
+    "message": "An article was created",
+    "href": "article/5",
+    "date": "2024-01-20T19:22:18.771Z"
   },
   {
     "id": "8",
-    "userId": "1",
+    "userId": "3",
     "type": "Announcement",
     "title": "",
-    "message": "Enter account",
-    "href": "",
-    "date": "2024-01-10T12:27:12.815Z"
+    "message": "An article was created",
+    "href": "article/6",
+    "date": "2024-01-20T19:25:59.641Z"
   },
   {
     "id": "9",
-    "userId": "2",
+    "userId": "3",
     "type": "Announcement",
     "title": "",
-    "message": "Enter account",
-    "href": "",
-    "date": "2024-01-10T15:04:26.344Z"
+    "message": "An article was created",
+    "href": "article/7",
+    "date": "2024-01-20T19:29:01.127Z"
   },
   {
     "id": "10",
-    "userId": "1",
+    "userId": "3",
     "type": "Announcement",
     "title": "",
-    "message": "Enter account",
-    "href": "",
-    "date": "2024-01-10T15:29:56.603Z"
+    "message": "An article was created",
+    "href": "article/8",
+    "date": "2024-01-20T19:29:07.187Z"
   },
   {
     "id": "11",
-    "userId": "1",
+    "userId": "3",
     "type": "Announcement",
     "title": "",
     "message": "Enter account",
-    "href": "",
-    "date": "2024-01-11T15:29:32.245Z"
+    "date": "2024-01-20T19:30:28.592Z"
+  },
+  {
+    "id": "12",
+    "userId": "3",
+    "type": "Announcement",
+    "title": "",
+    "message": "An article was created",
+    "href": "article/5",
+    "date": "2024-01-20T19:30:32.064Z"
+  },
+  {
+    "id": "13",
+    "userId": "3",
+    "type": "Announcement",
+    "title": "",
+    "message": "Enter account",
+    "date": "2024-01-20T19:39:32.769Z"
+  },
+  {
+    "id": "14",
+    "userId": "3",
+    "type": "Announcement",
+    "title": "",
+    "message": "Enter account",
+    "date": "2024-01-20T19:47:31.468Z"
   }
 ]

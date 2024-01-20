@@ -3,15 +3,15 @@
     "id": "1",
     "user": {
       "id": "1",
-      "email": "dev@mail.com",
-      "username": "dev",
+      "email": "admin@mail.com",
+      "username": "admin",
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
       "roles": [
         "USER"
       ]
     },
-    "first": "dev",
-    "lastname": "dev",
+    "first": "",
+    "lastname": "",
     "age": 0,
     "country": "USA",
     "currency": "EUR"
@@ -22,6 +22,23 @@
       "id": "2",
       "email": "user@mail.com",
       "username": "user",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "first": "",
+    "lastname": "",
+    "age": 0,
+    "country": "USA",
+    "currency": "EUR"
+  },
+  {
+    "id": "3",
+    "user": {
+      "id": "3",
+      "email": "dev@mail.com",
+      "username": "dev",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
       "roles": [
         "USER"

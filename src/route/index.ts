@@ -9,6 +9,7 @@ import articles from "./articles.js";
 import article from "./article.js";
 import articleRatings from "./article-ratings.js";
 import comments from "./comments.js";
+import usersEdit from "./users-edit.js";
 
 router.use("/", auth);
 router.use("/", profile);
@@ -18,6 +19,7 @@ router.use("/", articles);
 router.use("/", article);
 router.use("/", articleRatings);
 router.use("/", comments);
+router.use("/", usersEdit);
 
 router.get("/", (req: Request, res: Response) => {
   res.status(200).json("Hello Prod");

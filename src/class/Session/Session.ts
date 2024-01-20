@@ -59,7 +59,7 @@ class Session {
   }
 
   public static generateCode(): string {
-    const length = 6;
+    const length = 12;
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const generateCharacter = () =>

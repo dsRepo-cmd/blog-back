@@ -2,13 +2,13 @@
   {
     "id": "1",
     "roles": [
-      "USER"
+      "ADMIN"
     ],
     "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
-    "email": "dev@mail.com",
+    "email": "admin@mail.com",
     "password": "dsd5Rrrrr",
     "isConfirm": true,
-    "username": "dev",
+    "username": "admin",
     "features": {
       "isArticleRatingEnabled": true
     },
@@ -22,13 +22,33 @@
   {
     "id": "2",
     "roles": [
-      "ADMIN"
+      "USER"
     ],
     "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
     "email": "user@mail.com",
     "password": "dsd5Rrrrr",
     "isConfirm": true,
     "username": "user",
+    "features": {
+      "isArticleRatingEnabled": true
+    },
+    "jsonSettings": {
+      "theme": "app_light_theme",
+      "isFirstVisit": true,
+      "settingsPageHasBeenOpen": false,
+      "isArticlesPageWasOpened": true
+    }
+  },
+  {
+    "id": "3",
+    "roles": [
+      "USER"
+    ],
+    "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+    "email": "dev@mail.com",
+    "password": "dsd5Rrrrr",
+    "isConfirm": true,
+    "username": "dev",
     "features": {
       "isArticleRatingEnabled": true
     },
