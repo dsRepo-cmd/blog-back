@@ -5,14 +5,14 @@
       "id": "1",
       "email": "admin@mail.com",
       "username": "admin",
-      "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
+      "avatar": "http://localhost:8000/pictures/Clint.jpg",
       "roles": [
         "USER"
       ]
     },
-    "first": "",
+    "first": "admin",
     "lastname": "",
-    "age": 0,
+    "age": 100,
     "country": "USA",
     "currency": "EUR"
   },
@@ -39,7 +39,7 @@
       "id": "3",
       "email": "dev@mail.com",
       "username": "dev",
-      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "avatar": "http://localhost:8000/pictures/Wayne.jpg",
       "roles": [
         "USER"
       ]

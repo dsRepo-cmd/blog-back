@@ -2,9 +2,9 @@
   {
     "id": "1",
     "roles": [
-      "ADMIN"
+      "USER"
     ],
-    "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
+    "avatar": "http://localhost:8000/pictures/Clint.jpg",
     "email": "admin@mail.com",
     "password": "dsd5Rrrrr",
     "isConfirm": true,
@@ -13,7 +13,7 @@
       "isArticleRatingEnabled": true
     },
     "jsonSettings": {
-      "theme": "app_light_theme",
+      "theme": "app_orange_theme",
       "isFirstVisit": true,
       "settingsPageHasBeenOpen": false,
       "isArticlesPageWasOpened": true

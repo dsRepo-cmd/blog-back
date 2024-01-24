@@ -10,6 +10,15 @@ import article from "./article.js";
 import articleRatings from "./article-ratings.js";
 import comments from "./comments.js";
 import usersEdit from "./users-edit.js";
+import pictures from "./pictures.js";
+
+// delay server imitation
+// router.use(async (req, res, next) => {
+//   await new Promise((res) => {
+//     setTimeout(res, 2000);
+//   });
+//   next();
+// });
 
 router.use("/", auth);
 router.use("/", profile);
@@ -20,6 +29,7 @@ router.use("/", article);
 router.use("/", articleRatings);
 router.use("/", comments);
 router.use("/", usersEdit);
+router.use("/", pictures);
 
 router.get("/", (req: Request, res: Response) => {
   res.status(200).json("Hello Prod");

@@ -89,7 +89,9 @@
       {
         "id": "1704987117076",
         "type": "TEXT",
-        "paragraphs": [""],
+        "paragraphs": [
+          ""
+        ],
         "title": "Text"
       }
     ],
@@ -97,7 +99,9 @@
       "id": "1",
       "username": "admin",
       "email": "admin@mail.com",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
     }
   },
@@ -182,7 +186,9 @@
       "id": "2",
       "username": "user",
       "email": "user@mail.com",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "password": "123",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
     }
@@ -229,7 +235,9 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
       "features": {
         "isAppRedesigned": true
@@ -252,7 +260,9 @@
       "email": "dev@mail.com",
       "username": "dev",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
-      "roles": ["USER"]
+      "roles": [
+        "USER"
+      ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
     "views": 5,
@@ -280,7 +290,9 @@
       {
         "id": "1705779090891",
         "type": "TEXT",
-        "paragraphs": ["Let's start with some basic types in TypeScript:\n\n"],
+        "paragraphs": [
+          "Let's start with some basic types in TypeScript:\n\n"
+        ],
         "title": "Basic Types",
         "paragraphIndex": 0
       },
@@ -433,7 +445,9 @@
       {
         "id": "1704987117076",
         "type": "TEXT",
-        "paragraphs": [""],
+        "paragraphs": [
+          ""
+        ],
         "title": "Text"
       }
     ],
@@ -441,7 +455,9 @@
       "id": "1",
       "username": "admin",
       "email": "admin@mail.com",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
     }
   },
@@ -526,7 +542,9 @@
       "id": "2",
       "username": "user",
       "email": "user@mail.com",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "password": "123",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
     }
@@ -573,7 +591,9 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
       "features": {
         "isAppRedesigned": true
@@ -596,7 +616,9 @@
       "email": "dev@mail.com",
       "username": "dev",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
-      "roles": ["USER"]
+      "roles": [
+        "USER"
+      ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
     "views": 5,
@@ -624,7 +646,9 @@
       {
         "id": "1705779090891",
         "type": "TEXT",
-        "paragraphs": ["Let's start with some basic types in TypeScript:\n\n"],
+        "paragraphs": [
+          "Let's start with some basic types in TypeScript:\n\n"
+        ],
         "title": "Basic Types",
         "paragraphIndex": 0
       },
@@ -777,7 +801,9 @@
       {
         "id": "1704987117076",
         "type": "TEXT",
-        "paragraphs": [""],
+        "paragraphs": [
+          ""
+        ],
         "title": "Text"
       }
     ],
@@ -785,7 +811,9 @@
       "id": "1",
       "username": "admin",
       "email": "admin@mail.com",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
     }
   },
@@ -870,7 +898,9 @@
       "id": "2",
       "username": "user",
       "email": "user@mail.com",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "password": "123",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
     }
@@ -917,7 +947,9 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
       "features": {
         "isAppRedesigned": true
@@ -940,7 +972,9 @@
       "email": "dev@mail.com",
       "username": "dev",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
-      "roles": ["USER"]
+      "roles": [
+        "USER"
+      ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
     "views": 5,
@@ -968,7 +1002,9 @@
       {
         "id": "1705779090891",
         "type": "TEXT",
-        "paragraphs": ["Let's start with some basic types in TypeScript:\n\n"],
+        "paragraphs": [
+          "Let's start with some basic types in TypeScript:\n\n"
+        ],
         "title": "Basic Types",
         "paragraphIndex": 0
       },
@@ -1121,7 +1157,9 @@
       {
         "id": "1704987117076",
         "type": "TEXT",
-        "paragraphs": [""],
+        "paragraphs": [
+          ""
+        ],
         "title": "Text"
       }
     ],
@@ -1129,7 +1167,9 @@
       "id": "1",
       "username": "admin",
       "email": "admin@mail.com",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
     }
   },
@@ -1214,7 +1254,9 @@
       "id": "2",
       "username": "user",
       "email": "user@mail.com",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "password": "123",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
     }
@@ -1224,7 +1266,7 @@
     "title": " Unleashing Rust",
     "subtitle": "A Modern Language for Safe and Efficient Systems Programming",
     "img": "https://logowik.com/content/uploads/images/rust4784.logowik.com.webp",
-    "views": 216,
+    "views": 217,
     "createdAt": "2023-01-03T19:30:32.059Z",
     "userId": "1",
     "type": "IT",
@@ -1261,7 +1303,9 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
       "features": {
         "isAppRedesigned": true
@@ -1284,10 +1328,12 @@
       "email": "dev@mail.com",
       "username": "dev",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
-      "roles": ["USER"]
+      "roles": [
+        "USER"
+      ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
-    "views": 5,
+    "views": 6,
     "createdAt": "2024-01-04T19:30:32.059Z",
     "type": "ALL",
     "blocks": [
@@ -1312,7 +1358,9 @@
       {
         "id": "1705779090891",
         "type": "TEXT",
-        "paragraphs": ["Let's start with some basic types in TypeScript:\n\n"],
+        "paragraphs": [
+          "Let's start with some basic types in TypeScript:\n\n"
+        ],
         "title": "Basic Types",
         "paragraphIndex": 0
       },
@@ -1380,7 +1428,7 @@
     "title": "JavaScript",
     "subtitle": "Empowering Web Development",
     "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-    "views": 16893,
+    "views": 16894,
     "createdAt": "2023-01-05T19:30:32.059Z",
     "userId": "1",
     "type": "IT",
@@ -1465,7 +1513,9 @@
       {
         "id": "1704987117076",
         "type": "TEXT",
-        "paragraphs": [""],
+        "paragraphs": [
+          ""
+        ],
         "title": "Text"
       }
     ],
@@ -1473,7 +1523,9 @@
       "id": "1",
       "username": "admin",
       "email": "admin@mail.com",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
     }
   },
@@ -1558,7 +1610,9 @@
       "id": "2",
       "username": "user",
       "email": "user@mail.com",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "password": "123",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
     }
@@ -1605,7 +1659,9 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
       "features": {
         "isAppRedesigned": true
@@ -1628,10 +1684,12 @@
       "email": "dev@mail.com",
       "username": "dev",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
-      "roles": ["USER"]
+      "roles": [
+        "USER"
+      ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
-    "views": 5,
+    "views": 8,
     "createdAt": "2023-01-08T19:30:32.059Z",
     "type": "ALL",
     "blocks": [
@@ -1656,7 +1714,9 @@
       {
         "id": "1705779090891",
         "type": "TEXT",
-        "paragraphs": ["Let's start with some basic types in TypeScript:\n\n"],
+        "paragraphs": [
+          "Let's start with some basic types in TypeScript:\n\n"
+        ],
         "title": "Basic Types",
         "paragraphIndex": 0
       },
@@ -1809,7 +1869,9 @@
       {
         "id": "1704987117076",
         "type": "TEXT",
-        "paragraphs": [""],
+        "paragraphs": [
+          ""
+        ],
         "title": "Text"
       }
     ],
@@ -1817,7 +1879,9 @@
       "id": "1",
       "username": "admin",
       "email": "admin@mail.com",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
     }
   },
@@ -1902,7 +1966,9 @@
       "id": "2",
       "username": "user",
       "email": "user@mail.com",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "password": "123",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
     }
@@ -1949,7 +2015,9 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
       "features": {
         "isAppRedesigned": true
@@ -1972,10 +2040,12 @@
       "email": "dev@mail.com",
       "username": "dev",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
-      "roles": ["USER"]
+      "roles": [
+        "USER"
+      ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
-    "views": 5,
+    "views": 7,
     "createdAt": "2023-01-12T19:30:32.059Z",
     "type": "ALL",
     "blocks": [
@@ -2000,7 +2070,9 @@
       {
         "id": "1705779090891",
         "type": "TEXT",
-        "paragraphs": ["Let's start with some basic types in TypeScript:\n\n"],
+        "paragraphs": [
+          "Let's start with some basic types in TypeScript:\n\n"
+        ],
         "title": "Basic Types",
         "paragraphIndex": 0
       },
@@ -2153,7 +2225,9 @@
       {
         "id": "1704987117076",
         "type": "TEXT",
-        "paragraphs": [""],
+        "paragraphs": [
+          ""
+        ],
         "title": "Text"
       }
     ],
@@ -2161,7 +2235,9 @@
       "id": "1",
       "username": "admin",
       "email": "admin@mail.com",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
     }
   },
@@ -2246,7 +2322,9 @@
       "id": "2",
       "username": "user",
       "email": "user@mail.com",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "password": "123",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
     }
@@ -2256,7 +2334,7 @@
     "title": " Unleashing Rust",
     "subtitle": "A Modern Language for Safe and Efficient Systems Programming",
     "img": "https://logowik.com/content/uploads/images/rust4784.logowik.com.webp",
-    "views": 216,
+    "views": 220,
     "createdAt": "2023-01-01T15:30:32.059Z",
     "userId": "1",
     "type": "IT",
@@ -2293,7 +2371,9 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
       "features": {
         "isAppRedesigned": true
@@ -2316,7 +2396,9 @@
       "email": "dev@mail.com",
       "username": "dev",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
-      "roles": ["USER"]
+      "roles": [
+        "USER"
+      ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
     "views": 5,
@@ -2344,7 +2426,9 @@
       {
         "id": "1705779090891",
         "type": "TEXT",
-        "paragraphs": ["Let's start with some basic types in TypeScript:\n\n"],
+        "paragraphs": [
+          "Let's start with some basic types in TypeScript:\n\n"
+        ],
         "title": "Basic Types",
         "paragraphIndex": 0
       },
@@ -2497,7 +2581,9 @@
       {
         "id": "1704987117076",
         "type": "TEXT",
-        "paragraphs": [""],
+        "paragraphs": [
+          ""
+        ],
         "title": "Text"
       }
     ],
@@ -2505,7 +2591,9 @@
       "id": "1",
       "username": "admin",
       "email": "admin@mail.com",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg"
     }
   },
@@ -2514,7 +2602,7 @@
     "title": "Pyton Runtime Environments New",
     "subtitle": "What's new in Pyton ?",
     "img": "https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "views": 3023,
+    "views": 3024,
     "createdAt": "2023-01-26T19:30:32.059Z",
     "userId": "2",
     "type": "ECONOMICS",
@@ -2590,7 +2678,9 @@
       "id": "2",
       "username": "user",
       "email": "user@mail.com",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "password": "123",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg"
     }
@@ -2637,7 +2727,9 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
       "features": {
         "isAppRedesigned": true
@@ -2660,7 +2752,9 @@
       "email": "dev@mail.com",
       "username": "dev",
       "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
-      "roles": ["USER"]
+      "roles": [
+        "USER"
+      ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
     "views": 5,
@@ -2688,7 +2782,9 @@
       {
         "id": "1705779090891",
         "type": "TEXT",
-        "paragraphs": ["Let's start with some basic types in TypeScript:\n\n"],
+        "paragraphs": [
+          "Let's start with some basic types in TypeScript:\n\n"
+        ],
         "title": "Basic Types",
         "paragraphIndex": 0
       },
