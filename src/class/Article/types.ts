@@ -23,6 +23,8 @@ export interface ArticleQueryParams {
   _order: string;
   type: ArticleType;
   q: string;
+  isPublished: boolean;
+  userId: string;
 }
 
 export interface ArticleBlockBase {

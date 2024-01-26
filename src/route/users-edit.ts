@@ -4,7 +4,7 @@ import { handleServerError } from "./index.js";
 
 const router = express.Router();
 
-// ================================================================
+// GET================================================================
 router.get("/users-edit", async (req: Request, res: Response) => {
   console.log("users-edit");
   try {
@@ -16,7 +16,7 @@ router.get("/users-edit", async (req: Request, res: Response) => {
   }
 });
 
-// ================================================================
+// DELETE================================================================
 router.delete("/users-edit/:id", async (req: Request, res: Response) => {
   const userId = req.params.id as string;
 

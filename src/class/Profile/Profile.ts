@@ -102,10 +102,9 @@ class Profile {
       }
 
       return updatedProfile;
-    } else {
-      console.error("Profile not found by ID:", newProfile.id);
-      return null;
     }
+    console.error("Profile not found by ID:", newProfile.id);
+    return null;
   }
 }
 

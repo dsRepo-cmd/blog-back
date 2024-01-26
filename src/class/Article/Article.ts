@@ -69,9 +69,19 @@ class Article {
 
   public static getPublishedList(params: ArticleQueryParams): Article[] {
     let filteredArticles = [...this.list];
-    filteredArticles = filteredArticles.filter(
-      (article) => article.isPublished
-    );
+
+    if (params.isPublished) {
+      filteredArticles = filteredArticles.filter(
+        (article) => article.isPublished
+      );
+    }
+
+    //Filter By User
+    if (params.userId) {
+      filteredArticles = filteredArticles.filter(
+        (article) => article.user.id === params.userId
+      );
+    }
 
     // Apply filters
     if (params.type && params.type !== ArticleType.ALL) {
@@ -114,11 +124,22 @@ class Article {
     });
 
     // Apply pagination
-    const startIndex = (params._page - 1) * params._limit;
-    const endIndex = startIndex + params._limit;
+    const page =
+      typeof params._page === "string"
+        ? parseInt(params._page, 10)
+        : params._page || 1;
+
+    const limit =
+      typeof params._limit === "string"
+        ? parseInt(params._limit, 10)
+        : params._limit || 4;
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
 
     const paginatedArticles = filteredArticles.slice(startIndex, endIndex);
 
+    console.log(paginatedArticles.map((article) => article.id));
     return paginatedArticles;
   }
 
@@ -144,9 +165,8 @@ class Article {
       this.list.splice(index, 1);
       this.saveData();
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   public static update(newArticle: Article): Article | null {
@@ -161,10 +181,9 @@ class Article {
       };
       this.saveData();
       return this.list[index];
-    } else {
-      console.log("Article not found with id:", newArticle.id);
-      return null;
     }
+    console.log("Article not found with id:", newArticle.id);
+    return null;
   }
 
   public static create(user: UserData): Article {

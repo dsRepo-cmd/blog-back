@@ -360,7 +360,7 @@
     "title": "JavaScript",
     "subtitle": "Empowering Web Development",
     "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-    "views": 16893,
+    "views": 16896,
     "createdAt": "2023-05-20T19:30:32.059Z",
     "userId": "1",
     "type": "IT",
@@ -466,7 +466,7 @@
     "title": "Pyton Runtime Environments New",
     "subtitle": "What's new in Pyton ?",
     "img": "https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "views": 3023,
+    "views": 3024,
     "createdAt": "2023-06-20T19:30:32.059Z",
     "userId": "2",
     "type": "ECONOMICS",
@@ -554,7 +554,7 @@
     "title": " Unleashing Rust",
     "subtitle": "A Modern Language for Safe and Efficient Systems Programming",
     "img": "https://logowik.com/content/uploads/images/rust4784.logowik.com.webp",
-    "views": 216,
+    "views": 219,
     "createdAt": "2023-07-20T19:30:32.059Z",
     "userId": "1",
     "type": "IT",
@@ -621,7 +621,7 @@
       ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
-    "views": 5,
+    "views": 7,
     "createdAt": "2023-08-20T19:30:32.059Z",
     "type": "ALL",
     "blocks": [
@@ -977,7 +977,7 @@
       ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
-    "views": 5,
+    "views": 7,
     "createdAt": "2023-12-20T19:30:32.059Z",
     "type": "ALL",
     "blocks": [
@@ -1428,7 +1428,7 @@
     "title": "JavaScript",
     "subtitle": "Empowering Web Development",
     "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-    "views": 16894,
+    "views": 16895,
     "createdAt": "2023-01-05T19:30:32.059Z",
     "userId": "1",
     "type": "IT",
@@ -1689,7 +1689,7 @@
       ]
     },
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
-    "views": 8,
+    "views": 9,
     "createdAt": "2023-01-08T19:30:32.059Z",
     "type": "ALL",
     "blocks": [
@@ -1890,7 +1890,7 @@
     "title": "Pyton Runtime Environments New",
     "subtitle": "What's new in Pyton ?",
     "img": "https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "views": 3023,
+    "views": 3024,
     "createdAt": "2023-01-10T19:30:32.059Z",
     "userId": "2",
     "type": "ECONOMICS",
@@ -2334,7 +2334,7 @@
     "title": " Unleashing Rust",
     "subtitle": "A Modern Language for Safe and Efficient Systems Programming",
     "img": "https://logowik.com/content/uploads/images/rust4784.logowik.com.webp",
-    "views": 220,
+    "views": 223,
     "createdAt": "2023-01-01T15:30:32.059Z",
     "userId": "1",
     "type": "IT",
@@ -2602,7 +2602,7 @@
     "title": "Pyton Runtime Environments New",
     "subtitle": "What's new in Pyton ?",
     "img": "https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "views": 3024,
+    "views": 3026,
     "createdAt": "2023-01-26T19:30:32.059Z",
     "userId": "2",
     "type": "ECONOMICS",
@@ -2846,5 +2846,134 @@
       }
     ],
     "isPublished": true
+  },
+  {
+    "id": "33",
+    "title": "",
+    "subtitle": "",
+    "user": {
+      "id": "1",
+      "email": "admin@mail.com",
+      "username": "admin",
+      "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "img": "https://picsum.photos/650/400?random=1",
+    "views": 0,
+    "createdAt": "2024-01-24T13:59:11.276Z",
+    "type": "ALL",
+    "blocks": [],
+    "isPublished": false
+  },
+  {
+    "id": "34",
+    "title": "",
+    "subtitle": "",
+    "user": {
+      "id": "3",
+      "email": "dev@mail.com",
+      "username": "dev",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "img": "https://picsum.photos/650/400?random=1",
+    "views": 0,
+    "createdAt": "2024-01-24T18:23:10.528Z",
+    "type": "ALL",
+    "blocks": [],
+    "isPublished": false
+  },
+  {
+    "id": "35",
+    "title": "",
+    "subtitle": "",
+    "user": {
+      "id": "3",
+      "email": "dev@mail.com",
+      "username": "dev",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "img": "https://picsum.photos/650/400?random=1",
+    "views": 0,
+    "createdAt": "2024-01-24T18:31:10.538Z",
+    "type": "ALL",
+    "blocks": [],
+    "isPublished": false
+  },
+  {
+    "id": "36",
+    "title": "",
+    "subtitle": "",
+    "user": {
+      "id": "3",
+      "email": "dev@mail.com",
+      "username": "dev",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "img": "https://picsum.photos/650/400?random=1",
+    "views": 0,
+    "createdAt": "2024-01-24T18:34:12.674Z",
+    "type": "ALL",
+    "blocks": [],
+    "isPublished": false
+  },
+  {
+    "id": "37",
+    "title": "",
+    "subtitle": "",
+    "user": {
+      "id": "3",
+      "email": "dev@mail.com",
+      "username": "dev",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "img": "https://picsum.photos/650/400?random=1",
+    "views": 0,
+    "createdAt": "2024-01-24T18:38:03.824Z",
+    "type": "ALL",
+    "blocks": [],
+    "isPublished": false
+  },
+  {
+    "id": "38",
+    "title": "123",
+    "subtitle": "123",
+    "user": {
+      "id": "3",
+      "email": "dev@mail.com",
+      "username": "dev",
+      "avatar": "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      "roles": [
+        "USER"
+      ]
+    },
+    "img": "https://picsum.photos/650/400?random=1",
+    "views": 0,
+    "createdAt": "2024-01-24T21:17:35.715Z",
+    "type": "ALL",
+    "blocks": [
+      {
+        "id": "1706131061501",
+        "type": "TEXT",
+        "paragraphs": [
+          ""
+        ],
+        "title": "123"
+      }
+    ],
+    "isPublished": false
   }
 ]

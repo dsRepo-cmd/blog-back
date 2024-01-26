@@ -8,6 +8,8 @@ const router = express.Router();
 router.get("/articles", async (req: Request, res: Response) => {
   const query = req.query as unknown;
 
+  console.log(query);
+
   if (!query) {
     return res.status(400).json({
       message: "Error. There are no query params",

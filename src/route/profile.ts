@@ -4,7 +4,7 @@ import { handleServerError } from "./index.js";
 
 const router = express.Router();
 
-// ================================================================
+// PUT============================================================
 router.put("/profile/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
   const newProfile = req.body;
@@ -36,7 +36,7 @@ router.put("/profile/:id", async (req: Request, res: Response) => {
   }
 });
 
-// ================================================================
+// GET=============================================================
 router.get("/profile/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
 

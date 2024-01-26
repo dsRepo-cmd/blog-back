@@ -2,9 +2,9 @@
   {
     "id": "1",
     "roles": [
-      "USER"
+      "ADMIN"
     ],
-    "avatar": "http://localhost:8000/pictures/Clint.jpg",
+    "avatar": "https://www.kino-teatr.ru/acter/album/51803/33584.jpg",
     "email": "admin@mail.com",
     "password": "dsd5Rrrrr",
     "isConfirm": true,
@@ -13,7 +13,7 @@
       "isArticleRatingEnabled": true
     },
     "jsonSettings": {
-      "theme": "app_orange_theme",
+      "theme": "app_dark_theme",
       "isFirstVisit": true,
       "settingsPageHasBeenOpen": false,
       "isArticlesPageWasOpened": true
@@ -53,7 +53,7 @@
       "isArticleRatingEnabled": true
     },
     "jsonSettings": {
-      "theme": "app_light_theme",
+      "theme": "app_dark_theme",
       "isFirstVisit": true,
       "settingsPageHasBeenOpen": false,
       "isArticlesPageWasOpened": true

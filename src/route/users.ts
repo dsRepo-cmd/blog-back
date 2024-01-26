@@ -4,7 +4,7 @@ import { handleServerError } from "./index.js";
 
 const router = express.Router();
 
-// ================================================================
+// GET================================================================
 router.get("/users/:userId", async (req: Request, res: Response) => {
   const userId = req.params.userId as string;
 
@@ -29,7 +29,7 @@ router.get("/users/:userId", async (req: Request, res: Response) => {
   }
 });
 
-// ================================================================
+// PATCH================================================================
 router.patch("/users/:id", async (req: Request, res: Response) => {
   const userId = req.params.id as string;
   const { jsonSettings } = req.body;
@@ -49,7 +49,7 @@ router.patch("/users/:id", async (req: Request, res: Response) => {
   }
 });
 
-// ================================================================
+// PUT============================================================
 router.put("/users/:id", async (req: Request, res: Response) => {
   const userId = req.params.id as string;
   const { roles } = req.body;
