@@ -3,8 +3,11 @@ import * as path from "path";
 import { fileURLToPath } from "url";
 
 const dataFilePath = path.resolve(
-  fileURLToPath(import.meta.url),
-  "..\\..\\..\\bd\\authConfirm.json"
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+  "bd",
+  "authConfirm.json"
 );
 
 interface AuthConfirmData {

@@ -4,8 +4,11 @@ import { fileURLToPath } from "url";
 import { GetArticleRatingArg, RateArticleArg } from "./types.js";
 
 const dataFilePath = path.resolve(
-  fileURLToPath(import.meta.url),
-  "..\\..\\..\\bd\\articleRatings.json"
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+  "bd",
+  "articleRatings.json"
 );
 
 class ArticleRating {

@@ -6,6 +6,16 @@ import logger from "morgan";
 import dotenv from "dotenv";
 import route from "./route/index.js";
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import mongoose from "mongoose";
+// MongoDB===================================
+const URL_DB =
+  "mongodb+srv://ghostnord:PLKyblYQbIIVA3b8@cluster0.dbwrj5w.mongodb.net/";
+
+mongoose
+  .connect(URL_DB)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((e) => console.log(`DB connection error: ${e}`));
+// =========================================
 
 const app: Application = express();
 

@@ -6,8 +6,11 @@ import { fileURLToPath } from "url";
 import { ArticleBlock, ArticleQueryParams } from "./types.js";
 
 const dataFilePath = path.resolve(
-  fileURLToPath(import.meta.url),
-  "..\\..\\..\\bd\\articles.json"
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+  "bd",
+  "articles.json"
 );
 
 class Article {
@@ -69,15 +72,19 @@ class Article {
 
   public static getPublishedList(params: ArticleQueryParams): Article[] {
     let filteredArticles = [...this.list];
+    console.log(params);
 
     if (params.isPublished) {
+      const isPublishedFilterValue = params.isPublished === "true";
       filteredArticles = filteredArticles.filter(
-        (article) => article.isPublished
+        (article) => article.isPublished === isPublishedFilterValue
       );
     }
 
     //Filter By User
     if (params.userId) {
+      console.log("params.userId", typeof params.userId);
+
       filteredArticles = filteredArticles.filter(
         (article) => article.user.id === params.userId
       );

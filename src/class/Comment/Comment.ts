@@ -6,8 +6,11 @@ import { CommentArgs, CommentData } from "./types.js";
 import User from "../User/User.js";
 
 const dataFilePath = path.resolve(
-  fileURLToPath(import.meta.url),
-  "..\\..\\..\\bd\\comment.json"
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+  "bd",
+  "comment.json"
 );
 
 class Comment {

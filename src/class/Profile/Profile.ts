@@ -7,8 +7,12 @@ import { UserData } from "../User/types.js";
 import User from "../User/User.js";
 
 const dataFilePath = path.resolve(
-  fileURLToPath(import.meta.url),
-  "..\\..\\..\\bd\\profiles.json"
+  path.dirname(fileURLToPath(import.meta.url)),
+
+  "..",
+  "..",
+  "bd",
+  "profiles.json"
 );
 
 class Profile {

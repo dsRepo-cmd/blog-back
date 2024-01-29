@@ -23,7 +23,7 @@ export interface ArticleQueryParams {
   _order: string;
   type: ArticleType;
   q: string;
-  isPublished: boolean;
+  isPublished: boolean | string;
   userId: string;
 }
 

@@ -13,9 +13,10 @@ import usersEdit from "./users-edit.js";
 import pictures from "./pictures.js";
 
 // delay server imitation
+
 // router.use(async (req, res, next) => {
 //   await new Promise((res) => {
-//     setTimeout(res, 2000);
+//     setTimeout(res, 3000);
 //   });
 //   next();
 // });

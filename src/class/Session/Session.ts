@@ -4,8 +4,11 @@ import { fileURLToPath } from "url";
 import { User } from "../User/index.js";
 
 const dataFilePath = path.resolve(
-  fileURLToPath(import.meta.url),
-  "..\\..\\..\\bd\\sessions.json"
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+  "bd",
+  "sessions.json"
 );
 
 interface SessionData {

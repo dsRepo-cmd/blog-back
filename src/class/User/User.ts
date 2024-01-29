@@ -6,8 +6,11 @@ import { FeatureFlags, JsonSettings, UserData } from "./types.js";
 import { Profile } from "../Profile/index.js";
 
 const dataFilePath = path.resolve(
-  fileURLToPath(import.meta.url),
-  "..\\..\\..\\bd\\users.json"
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+  "bd",
+  "users.json"
 );
 
 class User {

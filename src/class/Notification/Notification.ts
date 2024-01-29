@@ -5,8 +5,12 @@ import { NotificationArgs, NotificationData } from "./types.js";
 import { NotificationType } from "./consts.js";
 
 const dataFilePath = path.resolve(
-  fileURLToPath(import.meta.url),
-  "..\\..\\..\\bd\\notifications.json"
+  path.dirname(fileURLToPath(import.meta.url)),
+
+  "..",
+  "..",
+  "bd",
+  "notifications.json"
 );
 
 class Notification {
