@@ -1,92 +1,77 @@
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
+import mongoose, { Document, Schema } from "mongoose";
 import { NotificationArgs, NotificationData } from "./types.js";
 import { NotificationType } from "./consts.js";
 
-const dataFilePath = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
+const notificationSchema = new Schema({
+  id: {
+    type: String,
+    default: () => new mongoose.Types.ObjectId().toString(),
+  },
+  userId: String,
+  type: String,
+  title: String,
+  message: String,
+  href: String,
+  date: Date,
+});
 
-  "..",
-  "..",
-  "bd",
-  "notifications.json"
+interface NotificationModel extends Document {
+  id: string;
+  userId: string;
+  type: NotificationType;
+  title: string;
+  message: string;
+  href?: string;
+  date: Date;
+}
+
+const NotificationModel = mongoose.model<NotificationModel>(
+  "Notification",
+  notificationSchema
 );
 
 class Notification {
-  private static list: NotificationData[];
-  private static count: number;
+  public static async initialize(): Promise<void> {}
 
-  public id: string;
-  public userId: string;
-  public type: NotificationType;
-  public title: string;
-  public message: string;
-  public href?: string;
-  public date: Date;
-
-  constructor({ userId, type, message, href }: NotificationArgs) {
-    this.id = Notification.generateId();
-    this.userId = userId;
-    this.type = type;
-    this.title = "";
-    this.message = message;
-    this.href = href;
-    this.date = new Date();
-  }
-
-  //=====Save/Load==========================================BD
-
-  private static loadData = (): Notification[] => {
+  public static async getList(): Promise<NotificationData[]> {
     try {
-      const data = fs.readFileSync(dataFilePath, "utf8");
-      return JSON.parse(data) || [];
+      const notifications = await NotificationModel.find();
+      return notifications.map((notification) => notification.toObject());
     } catch (error) {
+      console.error("Error getting notifications:", error);
       return [];
     }
-  };
-
-  private static saveData = (): void => {
-    fs.writeFileSync(dataFilePath, JSON.stringify(this.list, null, 2), "utf8");
-  };
-
-  private static generateId(): string {
-    return (this.count++).toString();
   }
 
-  public static initialize(): void {
-    this.list = this.loadData();
-
-    const maxId = this.list.reduce((max, notification) => {
-      return Number(notification.id) > max ? Number(notification.id) : max;
-    }, 0);
-
-    this.count = maxId + 1;
+  public static async getByUserId(userId: string): Promise<NotificationData[]> {
+    try {
+      const notifications = await NotificationModel.find({ userId });
+      return notifications.map((notification) => notification.toObject());
+    } catch (error) {
+      console.error("Error getting notifications by userId:", error);
+      return [];
+    }
   }
 
-  //=========================================================
+  public static async createNotification(
+    data: NotificationArgs
+  ): Promise<NotificationData> {
+    try {
+      const notification = await NotificationModel.create({
+        userId: data.userId,
+        type: data.type,
 
-  public static getList(): NotificationData[] {
-    return this.list;
-  }
+        message: data.message,
+        href: data.href,
+        date: new Date(),
+      });
 
-  public static addNotification(notification: NotificationData): void {
-    this.list.push(notification);
-    this.saveData();
-  }
-
-  public static getByUserId(userId: string): NotificationData[] {
-    return this.list.filter((notification) => notification.userId === userId);
-  }
-
-  public static createNotification(data: NotificationArgs): NotificationData {
-    console.log(data);
-    const notification = new Notification(data);
-    Notification.addNotification(notification);
-    return notification;
+      return notification.toObject();
+    } catch (error) {
+      console.error("Error creating notification:", error);
+      return {} as NotificationData;
+    }
   }
 }
-
-Notification.initialize();
 
 export default Notification;

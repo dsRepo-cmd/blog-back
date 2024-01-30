@@ -1,107 +1,50 @@
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
 import { Theme, UserRole } from "./consts.js";
-import { FeatureFlags, JsonSettings, UserData } from "./types.js";
-import { Profile } from "../Profile/index.js";
+import { IUserModel, JsonSettings, UserData } from "./types.js";
 
-const dataFilePath = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-  "..",
-  "bd",
-  "users.json"
-);
+import UserModel from "./model.js";
+import Profile from "../Profile/Profile.js";
 
 class User {
-  private static list: User[] = [];
-  private static count: number = 1;
+  public static async initialize(): Promise<void> {}
 
-  public id: string;
-  public email: string;
-  public username?: string;
-  public avatar?: string;
-  public roles?: UserRole[];
-  public isConfirm?: boolean;
-  public features?: FeatureFlags;
-  public jsonSettings?: JsonSettings;
-  public password: string;
+  public static async create(data: {
+    email: string;
+    password: string;
+  }): Promise<IUserModel> {
+    const user = new UserModel({
+      email: data.email.toLowerCase(),
+      password: data.password,
+      roles: [UserRole.USER],
+      username: data.email.substring(0, data.email.indexOf("@")),
+      avatar:
+        "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg",
+      isConfirm: false,
+      features: { isArticleRatingEnabled: true },
+      jsonSettings: {
+        theme: Theme.LIGHT,
+        isFirstVisit: true,
+        settingsPageHasBeenOpen: false,
+        isArticlesPageWasOpened: false,
+      },
+    });
 
-  constructor({ email, password }: { email: string; password: string }) {
-    this.id = User.generateId();
-    this.roles = [UserRole.USER];
-    this.avatar =
-      "https://www.themoviedb.org/t/p/original/xzwtlufGF7SyW9qU5djqQICygo5.jpg";
-    this.email = email.toLowerCase();
-    this.password = password;
-    this.isConfirm = false;
+    const savedUser = await user.save();
 
-    const atIndex = email.indexOf("@");
-    this.username = atIndex !== -1 ? email.substring(0, atIndex) : email;
+    Profile.create(savedUser);
 
-    this.features = { isArticleRatingEnabled: true };
-
-    this.jsonSettings = {
-      theme: Theme.LIGHT,
-      isFirstVisit: true,
-      settingsPageHasBeenOpen: false,
-      isArticlesPageWasOpened: false,
-    };
+    return savedUser;
   }
 
-  //=====Save/Load==========================================BD
-
-  private static loadData = (): User[] => {
-    try {
-      const data = fs.readFileSync(dataFilePath, "utf8");
-      return JSON.parse(data) || [];
-    } catch (error) {
-      return [];
-    }
-  };
-
-  private static saveData = (): void => {
-    fs.writeFileSync(dataFilePath, JSON.stringify(this.list, null, 2), "utf8");
-  };
-
-  private static generateId(): string {
-    return (this.count++).toString();
+  public static async getById(id: string): Promise<IUserModel | null> {
+    return (await UserModel.findOne({ id })) || null;
   }
 
-  public static initialize(): void {
-    this.list = this.loadData();
-
-    const maxId = this.list.reduce((max, user) => {
-      return Number(user.id) > max ? Number(user.id) : max;
-    }, 0);
-
-    this.count = maxId + 1;
-  }
-
-  //=========================================================
-
-  public static create = (data: { email: string; password: string }): User => {
-    const user = new User(data);
-
-    this.list.push(user);
-    this.saveData();
-
-    const userData = User.getUserDataById(user.id);
-    if (userData) Profile.create(userData);
-
-    return user;
-  };
-
-  public static getById = (id: string): User | undefined => {
-    return this.list.find((user) => user.id === id);
-  };
-
-  public static getUserDataById = (id: string): UserData | undefined => {
-    const user = this.getById(id);
+  public static async getUserDataById(id: string): Promise<UserData | null> {
+    const user = await UserModel.findOne({ id });
 
     if (user) {
       const userData: UserData = {
-        id: user.id,
+        id: user.id.toString(),
         email: user.email,
         username: user.username,
         avatar: user.avatar,
@@ -111,111 +54,96 @@ class User {
       return userData;
     }
 
-    return undefined;
-  };
+    return null;
+  }
 
-  public static getByEmail = (email: string): User | false => {
-    return (
-      this.list.find((user) => user.email === email.toLowerCase()) || false
-    );
-  };
+  public static async getByEmail(email: string): Promise<IUserModel | null> {
+    return (await UserModel.findOne({ email: email.toLowerCase() })) || null;
+  }
 
-  public static putJsonSettings = (
+  public static async putJsonSettings(
     id: string,
     newJsonSettings: JsonSettings
-  ): JsonSettings | false => {
-    const user = this.getById(id);
+  ): Promise<JsonSettings | null> {
+    const user = await UserModel.findOne({ id });
 
     if (user) {
       user.jsonSettings = newJsonSettings;
-      this.saveData();
+      await user.save();
 
-      const savedJsonSettings = user.jsonSettings;
-      if (savedJsonSettings) {
-        return savedJsonSettings;
-      }
-    }
-
-    return false;
-  };
-
-  public static putRoles = (
-    id: string,
-    newRoles: UserRole[]
-  ): UserRole[] | false => {
-    const user = this.getById(id);
-
-    if (user) {
-      user.roles = newRoles;
-      this.saveData();
-
-      const savedRoles = user.roles;
-      if (savedRoles) {
-        return savedRoles;
-      }
-    }
-
-    return false;
-  };
-
-  public static confirmByEmail = (email: string): User | false => {
-    const user = this.getByEmail(email);
-
-    if (user) {
-      user.isConfirm = true;
-      this.saveData();
-    }
-
-    return user || false;
-  };
-
-  public static updateUserByUserData(newUserData: UserData): UserData | null {
-    const userIndex = this.list.findIndex((user) => user.id === newUserData.id);
-
-    if (userIndex !== -1) {
-      const updatedUser = this.list[userIndex];
-
-      if (newUserData.email !== undefined) {
-        updatedUser.email = newUserData.email;
-      }
-
-      if (newUserData.username !== undefined) {
-        updatedUser.username = newUserData.username;
-      }
-
-      if (newUserData.avatar !== undefined) {
-        updatedUser.avatar = newUserData.avatar;
-      }
-
-      if (newUserData.roles !== undefined) {
-        updatedUser.roles = newUserData.roles;
-      }
-
-      this.list[userIndex] = updatedUser;
-      this.saveData();
-
-      return updatedUser;
+      return user.jsonSettings || null;
     }
 
     return null;
   }
-  public static getUsersList() {
-    return this.list;
-  }
 
-  public static deletebyId(userId: string): boolean {
-    const index = this.list.findIndex((user) => user.id === userId);
+  public static async putRoles(
+    id: string,
+    newRoles: UserRole[]
+  ): Promise<UserRole[] | null> {
+    const user = await UserModel.findOne({ id });
 
-    if (index !== -1) {
-      this.list.splice(index, 1);
-      this.saveData();
-      return true;
+    if (user) {
+      user.roles = newRoles;
+      await user.save();
+
+      return user.roles;
     }
 
-    return false;
+    return null;
+  }
+
+  public static async confirmByEmail(
+    email: string
+  ): Promise<IUserModel | null> {
+    const user = await UserModel.findOne({ email });
+
+    if (user) {
+      user.isConfirm = true;
+      await user.save();
+    }
+
+    return user || null;
+  }
+
+  public static async updateUserByUserData(
+    newUserData: UserData
+  ): Promise<UserData | null> {
+    const user = await UserModel.findOne({ id: newUserData.id });
+
+    if (user) {
+      if (newUserData.email !== undefined) {
+        user.email = newUserData.email;
+      }
+
+      if (newUserData.username !== undefined) {
+        user.username = newUserData.username;
+      }
+
+      if (newUserData.avatar !== undefined) {
+        user.avatar = newUserData.avatar;
+      }
+
+      if (newUserData.roles !== undefined) {
+        user.roles = newUserData.roles;
+      }
+
+      await user.save();
+
+      return newUserData;
+    }
+
+    return null;
+  }
+
+  public static async getUsersList(): Promise<IUserModel[]> {
+    return await UserModel.find({});
+  }
+
+  public static async deleteById(userId: string): Promise<boolean> {
+    const result = await UserModel.deleteOne({ _id: userId });
+    return result.deletedCount !== 0;
   }
 }
-
-User.initialize();
 
 export default User;

@@ -1,114 +1,107 @@
-import * as fs from "fs";
-import * as path from "path";
+import mongoose, { Document, Schema } from "mongoose";
 import { Country, Currency } from "./consts.js";
-import { ProfileData } from "./types.js";
-import { fileURLToPath } from "url";
-import { UserData } from "../User/types.js";
+import { IUserModel, UserData } from "../User/types.js";
 import User from "../User/User.js";
 
-const dataFilePath = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
+const profileSchema = new Schema({
+  id: String,
+  first: String,
+  lastname: String,
+  age: Number,
+  currency: String,
+  country: String,
 
-  "..",
-  "..",
-  "bd",
-  "profiles.json"
-);
+  user: {
+    id: String,
+    email: String,
+    username: String,
+    avatar: String,
+    roles: [String],
+  },
+});
+
+interface ProfileModel extends Document {
+  id: string;
+  first?: string;
+  lastname?: string;
+  age?: number;
+  currency?: Currency;
+  country?: Country;
+  user: UserData;
+}
+
+const ProfileModel = mongoose.model<ProfileModel>("Profile", profileSchema);
 
 class Profile {
-  private static list: Profile[] = [];
+  public static async initialize(): Promise<void> {}
 
-  public id: string;
-  public first?: string;
-  public lastname?: string;
-  public age?: number;
-  public currency?: Currency;
-  public country?: Country;
-  public user: UserData;
+  public static async create(user: IUserModel): Promise<ProfileModel> {
+    const profile = new ProfileModel({
+      id: user.id,
+      first: "",
+      lastname: "",
+      age: 0,
+      currency: Currency.USD,
+      country: Country.USA,
+      user: {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        avatar: user.avatar,
+        roles: user.roles,
+      },
+    });
 
-  constructor(user: UserData) {
-    this.id = user.id;
-    this.user = user;
-    this.first = "";
-    this.lastname = "";
-    this.age = 0;
-    this.country = Country.USA;
-    this.currency = Currency.EUR;
+    return await profile.save();
   }
 
-  //=====Save/Load==========================================BD
-  private static loadData = (): Profile[] => {
+  public static async getById(id: string): Promise<ProfileModel | null> {
+    const profile = await ProfileModel.findOne({ id });
+
+    return profile || null;
+  }
+
+  public static async update(
+    newProfile: Promise<ProfileModel>
+  ): Promise<ProfileModel | null> {
     try {
-      const data = fs.readFileSync(dataFilePath, "utf8");
-      return JSON.parse(data) || [];
-    } catch (error) {
-      return [];
-    }
-  };
+      const resolvedNewProfile = await newProfile;
 
-  private static saveData = (): void => {
-    fs.writeFileSync(dataFilePath, JSON.stringify(this.list, null, 2), "utf8");
-  };
+      console.log("newProfile", resolvedNewProfile);
 
-  public static initialize(): void {
-    this.list = this.loadData();
-  }
-  //=========================================================
+      const existingProfile = await ProfileModel.findOne({
+        id: resolvedNewProfile.id,
+      });
 
-  public static create(userData: UserData): Profile {
-    const profile = new Profile(userData);
+      if (existingProfile) {
+        existingProfile.first =
+          resolvedNewProfile.first || existingProfile.first;
+        existingProfile.lastname =
+          resolvedNewProfile.lastname || existingProfile.lastname;
+        existingProfile.age = resolvedNewProfile.age || existingProfile.age;
+        existingProfile.currency =
+          resolvedNewProfile.currency || existingProfile.currency;
+        existingProfile.country =
+          resolvedNewProfile.country || existingProfile.country;
 
-    Profile.addProfile(profile);
-    return profile;
-  }
+        existingProfile.user = existingProfile.user = {
+          ...resolvedNewProfile.user,
+          ...existingProfile.user,
+        };
 
-  public static getList(): Profile[] {
-    return this.list;
-  }
+        await existingProfile.save();
 
-  public static addProfile(profile: Profile): Profile | null {
-    this.list.push(profile);
-    this.saveData();
-    return profile;
-  }
+        await User.updateUserByUserData(resolvedNewProfile.user);
 
-  public static getById(id: string): Profile | null {
-    return this.list.find((profile) => profile.id === id) || null;
-  }
-
-  public static update(newProfile: ProfileData): Profile | null {
-    const index = this.list.findIndex(
-      (profile) => profile.id === newProfile.id
-    );
-
-    if (index !== -1) {
-      const updatedProfile: Profile = {
-        ...this.list[index],
-        ...newProfile,
-        user: {
-          ...this.list[index].user,
-          ...newProfile.user,
-          id: newProfile.user?.id || this.list[index].user?.id,
-        },
-      };
-
-      this.list[index] = updatedProfile;
-      this.saveData();
-
-      if (newProfile.id && newProfile.user) {
-        User.updateUserByUserData({
-          id: updatedProfile.user?.id,
-          email: newProfile.user.email,
-          username: newProfile.user.username,
-          avatar: newProfile.user.avatar,
-          roles: newProfile.user.roles,
-        });
+        return existingProfile;
+      } else {
+        console.error("Profile not found by ID:", resolvedNewProfile.id);
+        return null;
       }
-
-      return updatedProfile;
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      return null;
     }
-    console.error("Profile not found by ID:", newProfile.id);
-    return null;
   }
 }
 

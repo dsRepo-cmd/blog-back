@@ -7,6 +7,7 @@ const router = express.Router();
 // PUT============================================================
 router.put("/profile/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
+
   const newProfile = req.body;
 
   if (!id) {

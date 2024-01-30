@@ -1,64 +1,50 @@
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
+import { Document, Schema, model, Model, PopulatedDoc } from "mongoose";
 import { User } from "../User/index.js";
+import { IUserModel } from "../User/types.js";
 
-const dataFilePath = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-  "..",
-  "bd",
-  "sessions.json"
-);
+const sessionSchema = new Schema({
+  token: {
+    type: String,
+    required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+});
 
-interface SessionData {
+interface ISessionModel extends Document {
   token: string;
-  user: User;
+  user: PopulatedDoc<User & Document>;
 }
 
+const SessionModel: Model<ISessionModel> = model<ISessionModel>(
+  "Session",
+  sessionSchema
+);
+
 class Session {
-  private static list: SessionData[];
+  public static async initialize(): Promise<void> {}
 
-  public token: string;
-  public user: User;
-
-  constructor(user: User) {
-    this.token = Session.generateCode();
-    this.user = user;
+  public static async getList(): Promise<ISessionModel[]> {
+    return await SessionModel.find().populate("user").exec();
   }
 
-  //=====Save/Load==========================================BD
-
-  private static loadData = (): SessionData[] => {
-    try {
-      const data = fs.readFileSync(dataFilePath, "utf8");
-      return JSON.parse(data);
-    } catch (error) {
-      return [];
-    }
-  };
-
-  private static saveData = (data: SessionData[]): void => {
-    fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), "utf8");
-  };
-
-  public static initialize(): void {
-    Session.list = Session.loadData();
+  public static async addSession(sessionData: {
+    token: string;
+    user: User;
+  }): Promise<void> {
+    const session = new SessionModel(sessionData);
+    await session.save();
   }
 
-  //=========================================================
-
-  public static getList(): SessionData[] {
-    return Session.list;
-  }
-
-  public static addSession(session: SessionData): void {
-    Session.list.push(session);
-    Session.saveData(Session.list);
-  }
-
-  public static findSessionByToken(token: string): SessionData | undefined {
-    return Session.list.find((item) => item.token === token);
+  public static async findSessionByToken(
+    token: string
+  ): Promise<ISessionModel | null> {
+    return (
+      (await SessionModel.findOne({ token }).populate("user").exec()) || null
+    );
   }
 
   public static generateCode(): string {
@@ -67,19 +53,24 @@ class Session {
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const generateCharacter = () =>
       characters[Math.floor(Math.random() * characters.length)];
-
     const token = Array.from({ length }, generateCharacter).join("");
-
     return token;
   }
 
-  public static create(data: User): Session {
-    const session = new Session(data);
-    Session.addSession(session);
-    return session;
+  public static async create(data: IUserModel): Promise<ISessionModel> {
+    const token = Session.generateCode();
+    const userObject = data.toObject();
+    const sessionData = { token, user: userObject };
+    const session = new SessionModel(sessionData);
+    await session.save();
+    const savedSession = await SessionModel.findOne({ token })
+      .populate("user")
+      .exec();
+    if (!savedSession) {
+      throw new Error("Failed to create session");
+    }
+    return savedSession;
   }
 }
-
-Session.initialize();
 
 export default Session;
