@@ -1,9 +1,49 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema, Model } from "mongoose";
 import { UserData } from "../User/index.js";
-import { ArticleSortField, ArticleType } from "./consts.js";
-import { ArticleBlock, ArticleQueryParams } from "./types.js";
+import { ArticleBlockType, ArticleType } from "./consts.js";
+import {
+  ArticleBlock,
+  ArticleCodeBlock,
+  ArticleImageBlock,
+  ArticleQueryParams,
+  ArticleTextBlock,
+} from "./types.js";
 
-const articleSchema = new Schema({
+interface ArticleModel extends Document {
+  id: string;
+  title: string;
+  subtitle: string;
+  user: UserData;
+  img: string;
+  views: number;
+  createdAt: Date;
+  type: string;
+  blocks: ArticleBlock[];
+  isPublished: boolean;
+}
+
+const codeBlockSchema = new Schema({
+  id: String,
+  type: String,
+  code: String,
+});
+
+const imageBlockSchema = new Schema({
+  id: String,
+  type: String,
+  src: String,
+  title: String,
+});
+
+const textBlockSchema = new Schema({
+  id: String,
+  type: String,
+  title: String,
+  paragraphs: [String],
+  paragraphIndex: Number,
+});
+
+const articleSchema = new Schema<ArticleModel>({
   id: {
     type: String,
     default: () => new mongoose.Types.ObjectId().toString(),
@@ -21,33 +61,14 @@ const articleSchema = new Schema({
   views: Number,
   createdAt: Date,
   type: String,
-  blocks: [
-    {
-      id: String,
-      type: String,
-      src: String,
-      title: String,
-      paragraphs: [String],
-      paragraphIndex: Number,
-    },
-  ],
+  blocks: [codeBlockSchema, imageBlockSchema, textBlockSchema],
   isPublished: Boolean,
 });
 
-interface ArticleModel extends Document {
-  id: string;
-  title: string;
-  subtitle: string;
-  user: UserData;
-  img: string;
-  views: number;
-  createdAt: Date;
-  type: string;
-  blocks: ArticleBlock[];
-  isPublished: boolean;
-}
-
-const ArticleModel = mongoose.model<ArticleModel>("Article", articleSchema);
+const ArticleModel: Model<ArticleModel> = mongoose.model(
+  "Article",
+  articleSchema
+);
 
 class Article {
   public static async initialize(): Promise<void> {}
@@ -56,7 +77,7 @@ class Article {
     const article = new ArticleModel({
       title: "",
       subtitle: "",
-      user: user,
+      user,
       img: "https://picsum.photos/650/400?random=1",
       views: 0,
       createdAt: new Date(),
@@ -71,57 +92,55 @@ class Article {
   public static async getPublishedList(
     params: ArticleQueryParams
   ): Promise<ArticleModel[]> {
+    const { _limit, _page, _sort, _order, type, q, isPublished, userId } =
+      params;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const query: Record<string, any> = {};
+
+    if (type) {
+      query.type = type;
+    }
+
+    if (q) {
+      query.$or = [
+        { title: { $regex: q, $options: "i" } },
+        { subtitle: { $regex: q, $options: "i" } },
+      ];
+    }
+
+    if (isPublished !== undefined) {
+      query.isPublished = isPublished;
+    }
+
+    if (userId) {
+      query["user.id"] = userId;
+    }
+
+    let sortOrder: 1 | -1 = 1;
+
+    if (_order && _order.toLowerCase() === "desc") {
+      sortOrder = -1;
+    }
+
+    const sortField: Record<string, 1 | -1> = {};
+
+    if (_sort) {
+      sortField[_sort] = sortOrder;
+    } else {
+      sortField.createdAt = sortOrder;
+    }
+
     try {
-      let filteredArticles = await ArticleModel.find({});
+      const articles = await ArticleModel.find(query)
+        .sort(sortField)
+        .limit(_limit)
+        .skip((_page - 1) * _limit)
+        .exec();
 
-      if (params.isPublished) {
-        const isPublishedFilterValue = params.isPublished === "true";
-        filteredArticles = filteredArticles.filter(
-          (article) => article.isPublished === isPublishedFilterValue
-        );
-      }
-
-      if (params.userId) {
-        filteredArticles = filteredArticles.filter(
-          (article) => article.user.id === params.userId
-        );
-      }
-
-      if (params.type && params.type !== ArticleType.ALL) {
-        filteredArticles = filteredArticles.filter(
-          (article) => article.type === params.type
-        );
-      }
-
-      if (params.q) {
-        const searchRegex = new RegExp(params.q, "i");
-        filteredArticles = filteredArticles.filter(
-          (article) =>
-            searchRegex.test(article.title) ||
-            searchRegex.test(article.subtitle)
-        );
-      }
-
-      let sortField: keyof ArticleModel = "createdAt";
-      if (params._sort === ArticleSortField.VIEWS) {
-        sortField = "views";
-      } else if (params._sort === ArticleSortField.TITLE) {
-        sortField = "title";
-      }
-
-      const sortOrder = params._order === "asc" ? 1 : -1;
-
-      const paginatedArticles = await ArticleModel.find(filteredArticles)
-        .sort({ [sortField]: sortOrder })
-        .skip(
-          (parseInt(params._page.toString(), 10) || 1 - 1) *
-            (parseInt(params._limit.toString(), 10) || 4)
-        )
-        .limit(parseInt(params._limit.toString(), 10) || 4);
-
-      return paginatedArticles;
+      return articles || [];
     } catch (error) {
-      console.error("Error fetching articles from MongoDB:", error);
+      console.error("Error fetching articles:", error);
       return [];
     }
   }
@@ -135,24 +154,47 @@ class Article {
   public static async deleteById(id: string): Promise<boolean> {
     const article = await ArticleModel.deleteOne({ id });
 
-    if (article) {
-      return true;
-    }
-    return false;
+    return article.deletedCount !== undefined && article.deletedCount > 0;
   }
 
   public static async update(
     newArticle: ArticleModel
   ): Promise<ArticleModel | undefined> {
     try {
+      console.log("newArticle++++++++++++", newArticle);
+
+      const formattedBlocks = newArticle.blocks.map((block) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const formattedBlock: Record<string, any> = {
+          id: block.id,
+          type: block.type,
+        };
+
+        if (block.type === ArticleBlockType.CODE) {
+          formattedBlock.code = (block as ArticleCodeBlock).code;
+        } else if (block.type === ArticleBlockType.IMAGE) {
+          formattedBlock.src = (block as ArticleImageBlock).src;
+        } else if (block.type === ArticleBlockType.TEXT) {
+          const textBlock = block as ArticleTextBlock;
+          formattedBlock.paragraphs = textBlock.paragraphs;
+          formattedBlock.title = textBlock.title;
+          formattedBlock.paragraphIndex = textBlock.paragraphIndex;
+        }
+
+        return formattedBlock;
+      });
+
       const article = await ArticleModel.findOneAndUpdate(
         { id: newArticle.id },
-        { ...newArticle }
+        { ...newArticle, blocks: formattedBlocks },
+        { new: true, runValidators: true }
       );
-      console.log("newArticle=========", newArticle);
+
+      console.log("Updated Article=========", newArticle);
       return article || undefined;
     } catch (error) {
-      console.log(error);
+      console.error("Error updating article:", error);
+      return undefined;
     }
   }
 }

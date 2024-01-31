@@ -218,7 +218,7 @@ router.post("/recovery-confirm", async function (req: Request, res: Response) {
       });
     }
 
-    const user = await User.confirmByEmail(email);
+    const user = await User.confirmByEmail(email.toString());
 
     if (!user) {
       return res.status(400).json({

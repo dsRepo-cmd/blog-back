@@ -8,9 +8,9 @@ const router = express.Router();
 router.get("/users-edit", async (req: Request, res: Response) => {
   console.log("users-edit");
   try {
-    const userList = User.getUsersList();
+    const usersList = await User.getUsersList();
 
-    return res.status(200).json(userList);
+    return res.status(200).json(usersList);
   } catch (error: unknown) {
     return handleServerError(res, error);
   }
@@ -22,7 +22,7 @@ router.delete("/users-edit/:id", async (req: Request, res: Response) => {
 
   console.log("userId", userId);
   try {
-    const isDeleted = User.deleteById(userId);
+    const isDeleted = await User.deleteById(userId);
     if (!isDeleted) {
       return res.status(400).json({
         message: "User with the specified ID not found",

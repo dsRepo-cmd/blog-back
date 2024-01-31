@@ -1,14 +1,23 @@
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
+import mongoose, { Document, Schema, Model } from "mongoose";
 
-const dataFilePath = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-  "..",
-  "bd",
-  "authConfirm.json"
-);
+interface IAuthConfirmModel extends Document {
+  code: number;
+  data: string;
+}
+
+const authConfirmSchema = new Schema({
+  code: {
+    type: Number,
+    required: true,
+  },
+  data: {
+    type: String,
+    required: true,
+  },
+});
+
+const AuthConfirmModel: Model<IAuthConfirmModel> =
+  mongoose.model<IAuthConfirmModel>("AuthConfirm", authConfirmSchema);
 
 interface AuthConfirmData {
   code: number;
@@ -18,50 +27,45 @@ interface AuthConfirmData {
 class AuthConfirm {
   private static list: AuthConfirmData[];
 
-  //=====Save/Load==========================================BD
-
-  private static loadData = (): AuthConfirmData[] => {
+  public static async initialize(): Promise<void> {
     try {
-      const data = fs.readFileSync(dataFilePath, "utf8");
-      return JSON.parse(data);
+      AuthConfirm.list = await AuthConfirmModel.find().exec();
     } catch (error) {
-      return [];
+      console.error("Error initializing AuthConfirm:", error);
+    }
+  }
+
+  private static saveData = async (): Promise<void> => {
+    try {
+      await AuthConfirmModel.deleteMany({}); // Clear existing data
+      await AuthConfirmModel.insertMany(AuthConfirm.list); // Save new data
+    } catch (error) {
+      console.error("Error saving AuthConfirm data:", error);
     }
   };
-
-  private static saveData = (): void => {
-    fs.writeFileSync(
-      dataFilePath,
-      JSON.stringify(AuthConfirm.list, null, 2),
-      "utf8"
-    );
-  };
-
-  public static initialize(): void {
-    AuthConfirm.list = AuthConfirm.loadData();
-  }
-  //=========================================================
 
   public static getList(): AuthConfirmData[] {
     return AuthConfirm.list;
   }
 
-  public static addAuthConfirm(Authconfirm: AuthConfirmData): void {
-    AuthConfirm.list.push(Authconfirm);
-    AuthConfirm.saveData();
-  }
+  public static addAuthConfirm = async (
+    authConfirm: AuthConfirmData
+  ): Promise<void> => {
+    AuthConfirm.list.push(authConfirm);
+    await AuthConfirm.saveData();
+  };
 
-  public static deleteAuthConfirm(code: number): boolean {
+  public static deleteAuthConfirm = async (code: number): Promise<boolean> => {
     const length = AuthConfirm.list.length;
     AuthConfirm.list = AuthConfirm.list.filter((item) => item.code !== code);
-    AuthConfirm.saveData();
+    await AuthConfirm.saveData();
     return length > AuthConfirm.list.length;
-  }
+  };
 
-  public static getData(code: number): string | null {
+  public static getData = async (code: number): Promise<string | null> => {
     const obj = AuthConfirm.list.find((item) => item.code === code);
     return obj ? obj.data : null;
-  }
+  };
 
   public code: number;
   public data: string;
@@ -75,22 +79,22 @@ class AuthConfirm {
     return Math.floor(Math.random() * 9000) + 1000;
   }
 
-  public static create(data: string): AuthConfirm {
+  public static create = async (data: string): Promise<AuthConfirm> => {
     const newAuthConfirm = new AuthConfirm(data);
-    AuthConfirm.addAuthConfirm(newAuthConfirm);
+    await AuthConfirm.addAuthConfirm(newAuthConfirm);
 
-    setTimeout(() => {
-      AuthConfirm.deleteAuthConfirm(newAuthConfirm.code);
+    setTimeout(async () => {
+      await AuthConfirm.deleteAuthConfirm(newAuthConfirm.code);
     }, 24 * 60 * 60 * 1000);
 
     return newAuthConfirm;
-  }
+  };
 
-  public static delete(code: number): boolean {
-    return AuthConfirm.deleteAuthConfirm(code);
-  }
+  public static delete = async (code: number): Promise<boolean> => {
+    return await AuthConfirm.deleteAuthConfirm(code);
+  };
 }
 
-AuthConfirm.initialize();
+AuthConfirm.initialize(); // Initialize on application startup
 
 export default AuthConfirm;

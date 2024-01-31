@@ -137,11 +137,15 @@ class User {
   }
 
   public static async getUsersList(): Promise<IUserModel[]> {
-    return await UserModel.find({});
+    const usersList = await UserModel.find();
+
+    return usersList;
   }
 
   public static async deleteById(userId: string): Promise<boolean> {
-    const result = await UserModel.deleteOne({ _id: userId });
+    const result = await UserModel.deleteOne({ id: userId });
+
+    console.log("deleteById===", result, userId);
     return result.deletedCount !== 0;
   }
 }

@@ -29,8 +29,6 @@ const CommentModel: Model<ICommentModel> = model<ICommentModel>(
 );
 
 class Comment {
-  public static async initialize(): Promise<void> {}
-
   public static async create(data: CommentArgs): Promise<CommentData> {
     const comment = new CommentModel(data);
     await comment.save();

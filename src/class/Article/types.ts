@@ -51,6 +51,6 @@ export interface ArticleTextBlock extends ArticleBlockBase {
 }
 
 export type ArticleBlock =
-  | ArticleCodeBlock
-  | ArticleImageBlock
-  | ArticleTextBlock;
+  | (ArticleCodeBlock & { type: ArticleBlockType.CODE })
+  | (ArticleImageBlock & { type: ArticleBlockType.IMAGE })
+  | (ArticleTextBlock & { type: ArticleBlockType.TEXT });
