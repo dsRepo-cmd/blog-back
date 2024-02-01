@@ -9,7 +9,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 import mongoose from "mongoose";
 // MongoDB===================================
 const URL_DB =
-  "mongodb+srv://ghostnord:PLKyblYQbIIVA3b8@cluster0.dbwrj5w.mongodb.net/";
+  "mongodb+srv://ghostnord:PLKyblYQbIIVA3b8@cluster0.dbwrj5w.mongodb.net/production";
 
 mongoose
   .connect(URL_DB)

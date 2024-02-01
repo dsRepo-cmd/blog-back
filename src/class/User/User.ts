@@ -1,12 +1,10 @@
 import { Theme, UserRole } from "./consts.js";
 import { IUserModel, JsonSettings, UserData } from "./types.js";
-
 import UserModel from "./model.js";
 import Profile from "../Profile/Profile.js";
+import { EventEmitter } from "events";
 
-class User {
-  public static async initialize(): Promise<void> {}
-
+class User extends EventEmitter {
   public static async create(data: {
     email: string;
     password: string;
@@ -30,7 +28,7 @@ class User {
 
     const savedUser = await user.save();
 
-    Profile.create(savedUser);
+    await Profile.create(savedUser);
 
     return savedUser;
   }
@@ -98,7 +96,7 @@ class User {
   ): Promise<IUserModel | null> {
     const user = await UserModel.findOne({ email });
 
-    if (user) {
+    if (user && !user.isConfirm) {
       user.isConfirm = true;
       await user.save();
     }
@@ -106,45 +104,31 @@ class User {
     return user || null;
   }
 
-  public static async updateUserByUserData(
+  public static updateUserByUserData = async (
     newUserData: UserData
-  ): Promise<UserData | null> {
-    const user = await UserModel.findOne({ id: newUserData.id });
+  ): Promise<UserData | null> => {
+    const user = await UserModel.findOneAndUpdate(
+      { id: newUserData.id },
+      {
+        $set: {
+          email: newUserData.email,
+          username: newUserData.username,
+          avatar: newUserData.avatar,
+        },
+      },
+      { new: true }
+    );
 
-    if (user) {
-      if (newUserData.email !== undefined) {
-        user.email = newUserData.email;
-      }
-
-      if (newUserData.username !== undefined) {
-        user.username = newUserData.username;
-      }
-
-      if (newUserData.avatar !== undefined) {
-        user.avatar = newUserData.avatar;
-      }
-
-      if (newUserData.roles !== undefined) {
-        user.roles = newUserData.roles;
-      }
-
-      await user.save();
-
-      return newUserData;
-    }
-
-    return null;
-  }
+    return user ? newUserData : null;
+  };
 
   public static async getUsersList(): Promise<IUserModel[]> {
     const usersList = await UserModel.find();
-
     return usersList;
   }
 
   public static async deleteById(userId: string): Promise<boolean> {
     const result = await UserModel.deleteOne({ id: userId });
-
     console.log("deleteById===", result, userId);
     return result.deletedCount !== 0;
   }

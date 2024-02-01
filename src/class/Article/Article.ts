@@ -1,52 +1,10 @@
-import mongoose, { Document, Schema, Model } from "mongoose";
 import { UserData } from "../User/index.js";
 import { ArticleType } from "./consts.js";
-import { ArticleBlock, ArticleQueryParams } from "./types.js";
-
-interface ArticleModel extends Document {
-  id: string;
-  title: string;
-  subtitle: string;
-  user: UserData;
-  img: string;
-  views: number;
-  createdAt: Date;
-  type: string;
-  blocks: ArticleBlock[];
-  isPublished: boolean;
-}
-
-const articleSchema = new Schema<ArticleModel>({
-  id: {
-    type: String,
-    default: () => new mongoose.Types.ObjectId().toString(),
-  },
-  title: String,
-  subtitle: String,
-  user: {
-    id: String,
-    email: String,
-    username: String,
-    avatar: String,
-    roles: [String],
-  },
-  img: String,
-  views: Number,
-  createdAt: Date,
-  type: String,
-  blocks: [],
-  isPublished: Boolean,
-});
-
-const ArticleModel: Model<ArticleModel> = mongoose.model(
-  "Article",
-  articleSchema
-);
+import ArticleModel from "./model.js";
+import { ArticleData, ArticleQueryParams } from "./types.js";
 
 class Article {
-  public static async initialize(): Promise<void> {}
-
-  public static async create(user: UserData): Promise<ArticleModel> {
+  public static create(user: UserData): Promise<ArticleData> {
     const article = new ArticleModel({
       title: "",
       subtitle: "",
@@ -59,12 +17,12 @@ class Article {
       isPublished: false,
     });
 
-    return await article.save();
+    return article.save();
   }
 
   public static async getPublishedList(
     params: ArticleQueryParams
-  ): Promise<ArticleModel[]> {
+  ): Promise<ArticleData[]> {
     const { _limit, _page, _sort, _order, type, q, isPublished, userId } =
       params;
 
@@ -118,7 +76,7 @@ class Article {
     }
   }
 
-  public static async getById(id: string): Promise<ArticleModel | null> {
+  public static async getById(id: string): Promise<ArticleData | null> {
     const article = await ArticleModel.findOne({ id });
 
     return article || null;
@@ -131,12 +89,12 @@ class Article {
   }
 
   public static async update(
-    newArticle: ArticleModel
-  ): Promise<ArticleModel | undefined> {
+    newArticle: ArticleData
+  ): Promise<ArticleData | undefined> {
     try {
       const article = await ArticleModel.findOneAndUpdate(
         { id: newArticle.id },
-        { $set: { ...newArticle } },
+        Object.assign({}, newArticle),
         { new: true, upsert: true }
       );
 

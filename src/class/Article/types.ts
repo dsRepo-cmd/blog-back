@@ -1,16 +1,18 @@
-import { User } from "../User/index.js";
+import { Document } from "mongoose";
+import { UserData } from "../User/index.js";
 import { ArticleBlockType, ArticleType } from "./consts.js";
 
-export interface ArticleData {
+export interface ArticleData extends Document {
   id: string;
   title: string;
   subtitle: string;
-  user: User;
+  user: UserData;
   img: string;
   views: number;
   createdAt: Date;
   type: ArticleType;
   blocks: ArticleBlock[];
+  isPublished: boolean;
 }
 
 export type SortOrder = "asc" | "desc";

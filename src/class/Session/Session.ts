@@ -1,32 +1,9 @@
-import { Document, Schema, model, Model, PopulatedDoc } from "mongoose";
 import { User } from "../User/index.js";
 import { IUserModel } from "../User/types.js";
-
-const sessionSchema = new Schema({
-  token: {
-    type: String,
-    required: true,
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-});
-
-interface ISessionModel extends Document {
-  token: string;
-  user: PopulatedDoc<User & Document>;
-}
-
-const SessionModel: Model<ISessionModel> = model<ISessionModel>(
-  "Session",
-  sessionSchema
-);
+import SessionModel from "./model.js";
+import { ISessionModel } from "./types.js";
 
 class Session {
-  public static async initialize(): Promise<void> {}
-
   public static async getList(): Promise<ISessionModel[]> {
     return await SessionModel.find().populate("user").exec();
   }

@@ -1,36 +1,9 @@
-import { Document, Schema, model, Model } from "mongoose";
-import { RateArticleArg, GetArticleRatingArg } from "./types.js";
-
-interface IArticleRatingModel extends Document {
-  userId: string;
-  articleId: string;
-  feedback: string;
-  rate?: number;
-  date: Date;
-}
-
-const articleRatingSchema = new Schema({
-  userId: {
-    type: String,
-    required: true,
-  },
-  articleId: {
-    type: String,
-    required: true,
-  },
-  feedback: {
-    type: String,
-    required: true,
-  },
-  rate: Number,
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
-const ArticleRatingModel: Model<IArticleRatingModel> =
-  model<IArticleRatingModel>("ArticleRating", articleRatingSchema);
+import ArticleRatingModel from "./model.js";
+import {
+  RateArticleArg,
+  GetArticleRatingArg,
+  IArticleRatingModel,
+} from "./types.js";
 
 class ArticleRating {
   public static async create(

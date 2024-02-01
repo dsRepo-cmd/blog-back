@@ -1,3 +1,4 @@
+import { Document } from "mongoose";
 import { UserData } from "../User/types.js";
 
 export interface CommentArgs {
@@ -12,4 +13,10 @@ export interface CommentData {
   text: string;
   articleId: string;
   userId: string;
+}
+
+export interface ICommentModel extends Document {
+  articleId: string;
+  userId: string;
+  text: string;
 }

@@ -1,41 +1,11 @@
-import mongoose, { Document, Schema } from "mongoose";
 import { Country, Currency } from "./consts.js";
-import { IUserModel, UserData } from "../User/types.js";
+import { IUserModel } from "../User/types.js";
 import User from "../User/User.js";
-
-const profileSchema = new Schema({
-  id: String,
-  first: String,
-  lastname: String,
-  age: Number,
-  currency: String,
-  country: String,
-
-  user: {
-    id: String,
-    email: String,
-    username: String,
-    avatar: String,
-    roles: [String],
-  },
-});
-
-interface ProfileModel extends Document {
-  id: string;
-  first?: string;
-  lastname?: string;
-  age?: number;
-  currency?: Currency;
-  country?: Country;
-  user: UserData;
-}
-
-const ProfileModel = mongoose.model<ProfileModel>("Profile", profileSchema);
+import ProfileModel from "./model.js";
+import { ProfileData } from "./types.js";
 
 class Profile {
-  public static async initialize(): Promise<void> {}
-
-  public static async create(user: IUserModel): Promise<ProfileModel> {
+  public static async create(user: IUserModel): Promise<ProfileData> {
     const profile = new ProfileModel({
       id: user.id,
       first: "",
@@ -52,59 +22,38 @@ class Profile {
       },
     });
 
-    return await profile.save();
+    return profile.save();
   }
 
-  public static async getById(id: string): Promise<ProfileModel | null> {
+  public static async getById(id: string): Promise<ProfileData | null> {
     const profile = await ProfileModel.findOne({ id });
 
     return profile || null;
   }
 
-  public static async update(
-    newProfile: Promise<ProfileModel>
-  ): Promise<ProfileModel | null> {
+  public static update = async (
+    newProfile: ProfileData
+  ): Promise<ProfileData | null> => {
     try {
-      const resolvedNewProfile = await newProfile;
-
-      console.log("newProfile", resolvedNewProfile);
-
-      const existingProfile = await ProfileModel.findOne({
-        id: resolvedNewProfile.id,
-      });
+      const existingProfile = await ProfileModel.findOne({ id: newProfile.id });
 
       if (existingProfile) {
-        existingProfile.first =
-          resolvedNewProfile.first || existingProfile.first;
-        existingProfile.lastname =
-          resolvedNewProfile.lastname || existingProfile.lastname;
-        existingProfile.age = resolvedNewProfile.age || existingProfile.age;
-        existingProfile.currency =
-          resolvedNewProfile.currency || existingProfile.currency;
-        existingProfile.country =
-          resolvedNewProfile.country || existingProfile.country;
-
-        existingProfile.user = existingProfile.user = {
-          ...resolvedNewProfile.user,
-          ...existingProfile.user,
-        };
+        Object.assign(existingProfile, newProfile);
 
         await existingProfile.save();
 
-        await User.updateUserByUserData(resolvedNewProfile.user);
+        await User.updateUserByUserData(newProfile.user);
 
         return existingProfile;
       } else {
-        console.error("Profile not found by ID:", resolvedNewProfile.id);
+        console.error("Profile not found by ID:", newProfile.id);
         return null;
       }
     } catch (error) {
       console.error("Error updating profile:", error);
-      return null;
+      throw error;
     }
-  }
+  };
 }
-
-Profile.initialize();
 
 export default Profile;

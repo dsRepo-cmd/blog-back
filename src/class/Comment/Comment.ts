@@ -1,32 +1,6 @@
-import { Document, Schema, model, Model } from "mongoose";
 import { CommentArgs, CommentData } from "./types.js";
 import User from "../User/User.js";
-
-interface ICommentModel extends Document {
-  articleId: string;
-  userId: string;
-  text: string;
-}
-
-const commentSchema = new Schema({
-  articleId: {
-    type: String,
-    required: true,
-  },
-  userId: {
-    type: String,
-    required: true,
-  },
-  text: {
-    type: String,
-    required: true,
-  },
-});
-
-const CommentModel: Model<ICommentModel> = model<ICommentModel>(
-  "Comment",
-  commentSchema
-);
+import CommentModel from "./model.js";
 
 class Comment {
   public static async create(data: CommentArgs): Promise<CommentData> {

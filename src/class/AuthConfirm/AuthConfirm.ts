@@ -1,28 +1,5 @@
-import mongoose, { Document, Schema, Model } from "mongoose";
-
-interface IAuthConfirmModel extends Document {
-  code: number;
-  data: string;
-}
-
-const authConfirmSchema = new Schema({
-  code: {
-    type: Number,
-    required: true,
-  },
-  data: {
-    type: String,
-    required: true,
-  },
-});
-
-const AuthConfirmModel: Model<IAuthConfirmModel> =
-  mongoose.model<IAuthConfirmModel>("AuthConfirm", authConfirmSchema);
-
-interface AuthConfirmData {
-  code: number;
-  data: string;
-}
+import AuthConfirmModel from "./model.js";
+import { AuthConfirmData } from "./types.js";
 
 class AuthConfirm {
   private static list: AuthConfirmData[];
@@ -37,8 +14,8 @@ class AuthConfirm {
 
   private static saveData = async (): Promise<void> => {
     try {
-      await AuthConfirmModel.deleteMany({}); // Clear existing data
-      await AuthConfirmModel.insertMany(AuthConfirm.list); // Save new data
+      await AuthConfirmModel.deleteMany({});
+      await AuthConfirmModel.insertMany(AuthConfirm.list);
     } catch (error) {
       console.error("Error saving AuthConfirm data:", error);
     }
@@ -95,6 +72,6 @@ class AuthConfirm {
   };
 }
 
-AuthConfirm.initialize(); // Initialize on application startup
+AuthConfirm.initialize();
 
 export default AuthConfirm;

@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 import { IUserModel } from "./types.js";
 
-const userSchema = new Schema({
+const userSchema = new Schema<IUserModel>({
   id: {
     type: String,
     default: () => new mongoose.Types.ObjectId().toString(),
