@@ -40,17 +40,16 @@ export interface ArticleCodeBlock extends ArticleBlockBase {
 export interface ArticleImageBlock extends ArticleBlockBase {
   type: ArticleBlockType.IMAGE;
   src: string;
-  title?: string;
+  title: string;
 }
 
 export interface ArticleTextBlock extends ArticleBlockBase {
   type: ArticleBlockType.TEXT;
-  paragraphs: string[];
-  title?: string;
-  paragraphIndex?: number;
+  paragraph: string;
+  title: string;
 }
 
 export type ArticleBlock =
-  | (ArticleCodeBlock & { type: ArticleBlockType.CODE })
-  | (ArticleImageBlock & { type: ArticleBlockType.IMAGE })
-  | (ArticleTextBlock & { type: ArticleBlockType.TEXT });
+  | ArticleImageBlock
+  | ArticleCodeBlock
+  | ArticleTextBlock;

@@ -1,13 +1,7 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
 import { UserData } from "../User/index.js";
-import { ArticleBlockType, ArticleType } from "./consts.js";
-import {
-  ArticleBlock,
-  ArticleCodeBlock,
-  ArticleImageBlock,
-  ArticleQueryParams,
-  ArticleTextBlock,
-} from "./types.js";
+import { ArticleType } from "./consts.js";
+import { ArticleBlock, ArticleQueryParams } from "./types.js";
 
 interface ArticleModel extends Document {
   id: string;
@@ -21,27 +15,6 @@ interface ArticleModel extends Document {
   blocks: ArticleBlock[];
   isPublished: boolean;
 }
-
-const codeBlockSchema = new Schema({
-  id: String,
-  type: String,
-  code: String,
-});
-
-const imageBlockSchema = new Schema({
-  id: String,
-  type: String,
-  src: String,
-  title: String,
-});
-
-const textBlockSchema = new Schema({
-  id: String,
-  type: String,
-  title: String,
-  paragraphs: [String],
-  paragraphIndex: Number,
-});
 
 const articleSchema = new Schema<ArticleModel>({
   id: {
@@ -61,7 +34,7 @@ const articleSchema = new Schema<ArticleModel>({
   views: Number,
   createdAt: Date,
   type: String,
-  blocks: [codeBlockSchema, imageBlockSchema, textBlockSchema],
+  blocks: [],
   isPublished: Boolean,
 });
 
@@ -161,36 +134,12 @@ class Article {
     newArticle: ArticleModel
   ): Promise<ArticleModel | undefined> {
     try {
-      console.log("newArticle++++++++++++", newArticle);
-
-      const formattedBlocks = newArticle.blocks.map((block) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const formattedBlock: Record<string, any> = {
-          id: block.id,
-          type: block.type,
-        };
-
-        if (block.type === ArticleBlockType.CODE) {
-          formattedBlock.code = (block as ArticleCodeBlock).code;
-        } else if (block.type === ArticleBlockType.IMAGE) {
-          formattedBlock.src = (block as ArticleImageBlock).src;
-        } else if (block.type === ArticleBlockType.TEXT) {
-          const textBlock = block as ArticleTextBlock;
-          formattedBlock.paragraphs = textBlock.paragraphs;
-          formattedBlock.title = textBlock.title;
-          formattedBlock.paragraphIndex = textBlock.paragraphIndex;
-        }
-
-        return formattedBlock;
-      });
-
       const article = await ArticleModel.findOneAndUpdate(
         { id: newArticle.id },
-        { ...newArticle, blocks: formattedBlocks },
-        { new: true, runValidators: true }
+        { $set: { ...newArticle } },
+        { new: true, upsert: true }
       );
 
-      console.log("Updated Article=========", newArticle);
       return article || undefined;
     } catch (error) {
       console.error("Error updating article:", error);
