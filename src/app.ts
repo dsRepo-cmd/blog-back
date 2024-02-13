@@ -7,6 +7,7 @@ import route from "./route/index.js";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
+
 const app: Application = express();
 
 app.use((req: Request, res: Response, next: NextFunction) => {
