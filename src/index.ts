@@ -1,17 +1,16 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
 import app from "./app.js";
 import debugLib from "debug";
 import * as http from "http";
 import * as net from "net";
+import dotenv from "dotenv";
+import connectDB from "./database/db.js";
+
+dotenv.config();
+connectDB();
 
 const debug = debugLib("Product-server");
 
-const port: string | number = normalizePort(process.env.PORT || "8000") as
+const port: string | number = normalizePort(process.env.PORT || "4000") as
   | string
   | number;
 app.set("port", port);

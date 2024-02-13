@@ -3,23 +3,11 @@ import express, { Application, Request, Response, NextFunction } from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import dotenv from "dotenv";
 import route from "./route/index.js";
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-import mongoose from "mongoose";
-// MongoDB===================================
-const URL_DB =
-  "mongodb+srv://ghostnord:PLKyblYQbIIVA3b8@cluster0.dbwrj5w.mongodb.net/production";
 
-mongoose
-  .connect(URL_DB)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((e) => console.log(`DB connection error: ${e}`));
-// =========================================
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const app: Application = express();
-
-dotenv.config();
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -45,7 +33,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
 //////////////////////////////////////////
 
 if (process.env.NODE_ENV === "development") {
@@ -69,14 +56,10 @@ app.use("/", route);
 
 // error handler
 app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // catch 404 and forward to error handler
-
   next(createError(404));
-  // render the error page
   res.status(err.status || 500).json(err);
 });
 export default app;
