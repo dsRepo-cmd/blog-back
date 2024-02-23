@@ -113,5 +113,6 @@
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"],
   "lib": ["esnext"],
-  "ts-node": { "esm": true }
+
+  "ts-node": { "esm": true, "experimentalSpecifierResolution": "node" }
 }

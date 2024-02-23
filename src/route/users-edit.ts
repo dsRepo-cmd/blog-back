@@ -22,14 +22,15 @@ router.delete("/users-edit/:id", async (req: Request, res: Response) => {
 
   console.log("userId", userId);
   try {
-    const isDeleted = await User.deleteById(userId);
-    if (!isDeleted) {
+    const newUsersList = await User.deleteById(userId);
+
+    if (!newUsersList) {
       return res.status(400).json({
         message: "User with the specified ID not found",
       });
     }
 
-    return res.status(200).json();
+    return res.status(200).json(newUsersList);
   } catch (error: unknown) {
     return handleServerError(res, error);
   }

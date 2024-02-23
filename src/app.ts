@@ -5,8 +5,11 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import route from "./route/index.js";
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app: Application = express();
 
@@ -34,6 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
 //////////////////////////////////////////
 
 if (process.env.NODE_ENV === "development") {
@@ -63,4 +67,5 @@ app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
   next(createError(404));
   res.status(err.status || 500).json(err);
 });
+
 export default app;

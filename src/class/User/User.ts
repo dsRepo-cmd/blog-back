@@ -127,10 +127,12 @@ class User extends EventEmitter {
     return usersList;
   }
 
-  public static async deleteById(userId: string): Promise<boolean> {
+  public static async deleteById(userId: string): Promise<IUserModel[] | null> {
     const result = await UserModel.deleteOne({ id: userId });
-    console.log("deleteById===", result, userId);
-    return result.deletedCount !== 0;
+
+    const usersList = await UserModel.find();
+    if (result.deletedCount !== 0) return usersList;
+    return null;
   }
 }
 
