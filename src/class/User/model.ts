@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const Schema = mongoose.Schema;
+import { IUserModel } from "./types.js";
 
-const userSchema = new Schema({
+const userSchema = new Schema<IUserModel>({
   id: {
     type: String,
-    required: true,
+    default: () => new mongoose.Types.ObjectId().toString(),
   },
   email: {
     type: String,
@@ -30,6 +30,6 @@ const userSchema = new Schema({
   },
 });
 
-const UserModel = mongoose.model("User", userSchema);
+const UserModel = mongoose.model<IUserModel>("User", userSchema);
 
 export default UserModel;

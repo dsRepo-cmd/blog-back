@@ -200,7 +200,7 @@ router.post("/recovery", async (req: Request, res: Response) => {
 });
 // ================================================================
 
-router.post("/recovery-confirm", function (req: Request, res: Response) {
+router.post("/recovery-confirm", async function (req: Request, res: Response) {
   const { password, code } = req.body;
 
   if (!code || !password) {
@@ -218,7 +218,7 @@ router.post("/recovery-confirm", function (req: Request, res: Response) {
       });
     }
 
-    const user = User.confirmByEmail(email);
+    const user = await User.confirmByEmail(email.toString());
 
     if (!user) {
       return res.status(400).json({
@@ -226,7 +226,7 @@ router.post("/recovery-confirm", function (req: Request, res: Response) {
       });
     }
 
-    const session = Session.create(user);
+    const session = await Session.create(user);
 
     return res.status(200).json({
       message: "The password has been changed",

@@ -24,7 +24,7 @@ router.get("/notifications/:userId", async (req: Request, res: Response) => {
     }
 
     const notifications = await Notification.getByUserId(user.id);
-
+    console.log(notifications);
     if (!notifications || notifications.length === 0) {
       return res.status(404).json({
         message: "No notifications found for the specified userId",

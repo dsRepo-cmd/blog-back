@@ -1,6 +1,7 @@
+import { Document } from "mongoose";
 import { NotificationType } from "./consts.js";
 
-export interface NotificationData {
+export interface NotificationData extends Document {
   id: string;
   userId: string;
   type: string;

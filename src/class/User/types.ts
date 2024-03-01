@@ -1,3 +1,4 @@
+import { Document } from "mongoose";
 import { Theme, UserRole } from "./consts.js";
 export interface UserData {
   id: string;
@@ -18,4 +19,16 @@ export interface JsonSettings {
   isFirstVisit?: boolean;
   settingsPageHasBeenOpen?: boolean;
   isArticlesPageWasOpened?: boolean;
+}
+
+export interface IUserModel extends Document {
+  id: string;
+  email: string;
+  username?: string;
+  avatar?: string;
+  roles?: UserRole[];
+  isConfirm?: boolean;
+  features?: FeatureFlags;
+  jsonSettings?: JsonSettings;
+  password: string;
 }

@@ -1,117 +1,59 @@
-import * as fs from "fs";
-import * as path from "path";
 import { Country, Currency } from "./consts.js";
-import { ProfileData } from "./types.js";
-import { fileURLToPath } from "url";
-import { UserData } from "../User/types.js";
+import { IUserModel } from "../User/types.js";
 import User from "../User/User.js";
-
-const dataFilePath = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-
-  "..",
-  "..",
-  "bd",
-  "profiles.json"
-);
+import ProfileModel from "./model.js";
+import { ProfileData } from "./types.js";
 
 class Profile {
-  private static list: Profile[] = [];
+  public static async create(user: IUserModel): Promise<ProfileData> {
+    const profile = new ProfileModel({
+      id: user.id,
+      first: "",
+      lastname: "",
+      age: 0,
+      currency: Currency.USD,
+      country: Country.USA,
+      user: {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        avatar: user.avatar,
+        roles: user.roles,
+      },
+    });
 
-  public id: string;
-  public first?: string;
-  public lastname?: string;
-  public age?: number;
-  public currency?: Currency;
-  public country?: Country;
-  public user: UserData;
-
-  constructor(user: UserData) {
-    this.id = user.id;
-    this.user = user;
-    this.first = "";
-    this.lastname = "";
-    this.age = 0;
-    this.country = Country.USA;
-    this.currency = Currency.EUR;
+    return profile.save();
   }
 
-  //=====Save/Load==========================================BD
-  private static loadData = (): Profile[] => {
+  public static async getById(id: string): Promise<ProfileData | null> {
+    const profile = await ProfileModel.findOne({ id });
+
+    return profile || null;
+  }
+
+  public static update = async (
+    newProfile: ProfileData
+  ): Promise<ProfileData | null> => {
     try {
-      const data = fs.readFileSync(dataFilePath, "utf8");
-      return JSON.parse(data) || [];
-    } catch (error) {
-      return [];
-    }
-  };
+      const existingProfile = await ProfileModel.findOne({ id: newProfile.id });
 
-  private static saveData = (): void => {
-    fs.writeFileSync(dataFilePath, JSON.stringify(this.list, null, 2), "utf8");
-  };
+      if (existingProfile) {
+        Object.assign(existingProfile, newProfile);
 
-  public static initialize(): void {
-    this.list = this.loadData();
-  }
-  //=========================================================
+        await existingProfile.save();
 
-  public static create(userData: UserData): Profile {
-    const profile = new Profile(userData);
+        await User.updateUserByUserData(newProfile.user);
 
-    Profile.addProfile(profile);
-    return profile;
-  }
-
-  public static getList(): Profile[] {
-    return this.list;
-  }
-
-  public static addProfile(profile: Profile): Profile | null {
-    this.list.push(profile);
-    this.saveData();
-    return profile;
-  }
-
-  public static getById(id: string): Profile | null {
-    return this.list.find((profile) => profile.id === id) || null;
-  }
-
-  public static update(newProfile: ProfileData): Profile | null {
-    const index = this.list.findIndex(
-      (profile) => profile.id === newProfile.id
-    );
-
-    if (index !== -1) {
-      const updatedProfile: Profile = {
-        ...this.list[index],
-        ...newProfile,
-        user: {
-          ...this.list[index].user,
-          ...newProfile.user,
-          id: newProfile.user?.id || this.list[index].user?.id,
-        },
-      };
-
-      this.list[index] = updatedProfile;
-      this.saveData();
-
-      if (newProfile.id && newProfile.user) {
-        User.updateUserByUserData({
-          id: updatedProfile.user?.id,
-          email: newProfile.user.email,
-          username: newProfile.user.username,
-          avatar: newProfile.user.avatar,
-          roles: newProfile.user.roles,
-        });
+        return existingProfile;
+      } else {
+        console.error("Profile not found by ID:", newProfile.id);
+        return null;
       }
-
-      return updatedProfile;
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      throw error;
     }
-    console.error("Profile not found by ID:", newProfile.id);
-    return null;
-  }
+  };
 }
-
-Profile.initialize();
 
 export default Profile;

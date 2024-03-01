@@ -1,22 +1,23 @@
-import { User } from "../User/index.js";
+import { Document } from "mongoose";
+import { UserData } from "../User/index.js";
 import { ArticleBlockType, ArticleType } from "./consts.js";
 
-export interface ArticleData {
+export interface ArticleData extends Document {
   id: string;
   title: string;
   subtitle: string;
-  user: User;
+  user: UserData;
   img: string;
   views: number;
   createdAt: Date;
   type: ArticleType;
   blocks: ArticleBlock[];
+  isPublished: boolean;
 }
 
 export type SortOrder = "asc" | "desc";
 
 export interface ArticleQueryParams {
-  _expand: string;
   _limit: number;
   _page: number;
   _sort: string;
@@ -24,7 +25,6 @@ export interface ArticleQueryParams {
   type: ArticleType;
   q: string;
   isPublished: boolean | string;
-  userId: string;
 }
 
 export interface ArticleBlockBase {
@@ -40,17 +40,16 @@ export interface ArticleCodeBlock extends ArticleBlockBase {
 export interface ArticleImageBlock extends ArticleBlockBase {
   type: ArticleBlockType.IMAGE;
   src: string;
-  title?: string;
+  title: string;
 }
 
 export interface ArticleTextBlock extends ArticleBlockBase {
   type: ArticleBlockType.TEXT;
-  paragraphs: string[];
-  title?: string;
-  paragraphIndex?: number;
+  paragraph: string;
+  title: string;
 }
 
 export type ArticleBlock =
-  | ArticleCodeBlock
   | ArticleImageBlock
+  | ArticleCodeBlock
   | ArticleTextBlock;

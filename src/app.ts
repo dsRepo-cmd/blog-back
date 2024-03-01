@@ -3,13 +3,15 @@ import express, { Application, Request, Response, NextFunction } from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import dotenv from "dotenv";
 import route from "./route/index.js";
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app: Application = express();
-
-dotenv.config();
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -59,14 +61,11 @@ app.use("/", route);
 
 // error handler
 app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // catch 404 and forward to error handler
-
   next(createError(404));
-  // render the error page
   res.status(err.status || 500).json(err);
 });
+
 export default app;
