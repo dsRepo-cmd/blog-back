@@ -23,8 +23,7 @@ class Article {
   public static async getPublishedList(
     params: ArticleQueryParams
   ): Promise<ArticleData[]> {
-    const { _limit, _page, _sort, _order, type, q, isPublished, userId } =
-      params;
+    const { _limit, _page, _sort, _order, type, q, isPublished } = params;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const query: Record<string, any> = {};
@@ -42,10 +41,6 @@ class Article {
 
     if (isPublished !== undefined) {
       query.isPublished = isPublished;
-    }
-
-    if (userId) {
-      query["user.id"] = userId;
     }
 
     let sortOrder: 1 | -1 = 1;

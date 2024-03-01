@@ -18,7 +18,6 @@ export interface ArticleData extends Document {
 export type SortOrder = "asc" | "desc";
 
 export interface ArticleQueryParams {
-  _expand: string;
   _limit: number;
   _page: number;
   _sort: string;
@@ -26,7 +25,6 @@ export interface ArticleQueryParams {
   type: ArticleType;
   q: string;
   isPublished: boolean | string;
-  userId: string;
 }
 
 export interface ArticleBlockBase {

@@ -16,7 +16,7 @@ import pictures from "./pictures.js";
 
 // router.use(async (req, res, next) => {
 //   await new Promise((res) => {
-//     setTimeout(res, 3000);
+//     setTimeout(res, 5000);
 //   });
 //   next();
 // });
